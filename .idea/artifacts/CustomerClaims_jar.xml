@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CustomerClaims:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CustomerClaims_jar</output-path>
+    <root id="archive" name="CustomerClaims.jar">
+      <element id="module-output" name="CustomerClaims" />
+    </root>
+  </artifact>
+</component>
