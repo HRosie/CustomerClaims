@@ -1,4 +1,4 @@
-package ProgramMain;
+package Code.Main;
 
 public class programMain {
     public static void main(String[] args) {
