@@ -2,6 +2,7 @@ package Code.Customer;
 
 
 import Code.Claims.Claims;
+import Code.Claims.ClaimsView;
 import Code.InsuranceID.InsuranceID;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public abstract class Customer {
         System.out.println("Expiration Date: " + insuranceCardID.getExpDate());*/
         System.out.println("Claim List: ");
         for (Claims claim : claims) {
-            claim.display();
+            ClaimsView.displayClaim(claim);
         }
     }
 }
