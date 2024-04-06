@@ -9,13 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProgramMain/programMain.java" afterDir="false" />
+    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="New classes for every customer type">
+      <change afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +31,20 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Controll" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2egR7NMvf3wqViNRZdP7HuGRtT0" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,13 +56,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Customer",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaims_jar/CustomerClaims.jar",
+    "last_opened_file_path": "C:/Java code/ASM1",
     "onboarding.tips.debug.path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "inlay.hints"
   }
 }]]></component>
   <component name="RunManager">
@@ -69,6 +78,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,6 +94,31 @@
       <option name="presentableId" value="Default" />
       <updated>1712324069046</updated>
     </task>
+    <task id="LOCAL-00001" summary="Firsy step">
+      <option name="closed" value="true" />
+      <created>1712327249494</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712327249494</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Firsy step">
+      <option name="closed" value="true" />
+      <created>1712333849914</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712333849914</updated>
+    </task>
+    <task id="LOCAL-00003" summary="New classes for every customer type">
+      <option name="closed" value="true" />
+      <created>1712379010556</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712379010556</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,10 +126,27 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Customer" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Firsy step" />
+    <MESSAGE value="New classes for every customer type" />
+    <option name="LAST_COMMIT_MESSAGE" value="New classes for every customer type" />
   </component>
 </project>
