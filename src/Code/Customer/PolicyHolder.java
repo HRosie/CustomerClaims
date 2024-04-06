@@ -1,13 +1,14 @@
 package Code.Customer;
 
-import java.util.ArrayList;
 import java.util.List;
+import Code.Claims.Claims;
+import Code.InsuranceID.InsuranceID;
 
 public class PolicyHolder extends Customer {
     private List<DependentCustomer> dependentCustomers;
 
-    public PolicyHolder(String id, String name, String card, List<DependentCustomer> dependentCustomers) {
-        super(id,name,card);
+    public PolicyHolder(String customerID, String customerName, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {
+        super(customerID,customerName,insuranceID, claims);
         this.dependentCustomers = dependentCustomers;
     }
 
@@ -23,7 +24,7 @@ public class PolicyHolder extends Customer {
     }
 
     public String getName() {
-        return super.getName();
+        return super.getCustomerName();
     }
 
     public String getCustomerType() {
@@ -31,12 +32,9 @@ public class PolicyHolder extends Customer {
     }
 
     public void display() {
-        super.displayCustomer();
-        System.out.println("Customer Type: Policy Holder");
         System.out.println("Dependent Customer List:");
         for (DependentCustomer dependent : dependentCustomers) {
             System.out.print("- Name: " + dependent.getName());
-
         }
     }
 }

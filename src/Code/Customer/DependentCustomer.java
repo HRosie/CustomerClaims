@@ -1,9 +1,14 @@
 package Code.Customer;
 
+import Code.Claims.Claims;
+import Code.InsuranceID.InsuranceID;
+
+import java.util.List;
+
 public class DependentCustomer extends Customer{
     private PolicyHolder holderName;
-    public DependentCustomer(String id, String name, String card,PolicyHolder holderName) {
-        super(id,name,card);
+    public DependentCustomer(String customerID, String customerName, InsuranceID insuranceID, List<Claims> claim, PolicyHolder holderName) {
+        super(customerID,customerName,insuranceID, claim );
         this.holderName = holderName;
     }
 
@@ -17,7 +22,7 @@ public class DependentCustomer extends Customer{
     }
 
     public String getName() {
-        return super.getName();
+        return super.getCustomerName();
     }
 
     public String getCustomerType() {
@@ -26,7 +31,6 @@ public class DependentCustomer extends Customer{
 
     //@Override
     public void display() {
-        super.displayCustomer();
         System.out.println("Holder name: " + holderName.getName());
     }
 }

@@ -2,45 +2,77 @@ package Code.Customer;
 
 
 import Code.Claims.Claims;
+import Code.InsuranceID.InsuranceID;
+
 import java.util.List;
 
-public class Customer {
+public abstract class Customer {
     private String customerId;
     private String customerName;
-    private String insuranceCardID;
+    private InsuranceID insuranceCardID;
     private List<Claims> claims;
 
-    public Customer(String id, String name, String card){
-        this.customerId = id;
-        this.customerName = name;
-        this.insuranceCardID = card;
+    public Customer(String customerId, String customerName, InsuranceID insuranceCardID, List<Claims> claims) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.insuranceCardID = insuranceCardID;
+        this.claims = claims;
     }
-    public String getId() { return this.customerId; }
 
-    public void setID(String customerId) {
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
-    public String getName() { return this.customerName; }
+    public String getCustomerName() {
+        return customerName;
+    }
 
-    public void setName(String customerName) {
+    public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
-    public String getInsuranceCard() {
+    public InsuranceID getInsuranceCardID() {
         return insuranceCardID;
     }
 
-    public void setInsuranceCard() { this.insuranceCardID = insuranceCardID;
+    public void setInsuranceCardID(InsuranceID insuranceCardID) {
+        this.insuranceCardID = insuranceCardID;
     }
 
-    public void displayCustomer() {
+    public List<Claims> getClaims() {
+        return claims;
+    }
+
+    public void setClaims(List<Claims> claims) {
+        this.claims = claims;
+    }
+
+    public abstract String getCustomerType();
+
+    public void displayCustomerOne(Customer customer) {
         System.out.println("Name: " + customerName);
-        System.out.println("CustomerID: " + customerId);
-        System.out.println("Insurance Card: " + insuranceCardID);
+        System.out.println("CustomerID: " + customerId + "        Customer Type: " + getCustomerType());
+        if (customer instanceof PolicyHolder policyHolder) {
+            policyHolder.display();
+        }
+        else {
+            DependentCustomer dependentCustomer = (DependentCustomer) customer;
+            dependentCustomer.display();
+        }
+        System.out.println("----------------------------------------");
+        System.out.println("Insurance Card:");
+        insuranceCardID.display();
+        System.out.println("----------------------------------------");
+        /* System.out.println("Card Number: " + insuranceCardID.getCardNumber());
+        System.out.println("Policy Owner: " + insuranceCardID.getPolicyOwner().getName());
+        System.out.println("Expiration Date: " + insuranceCardID.getExpDate());*/
         System.out.println("Claim List: ");
-        for (Claims claims : claims) {
-            super.displayClaimsCustomer();
+        for (Claims claim : claims) {
+            claim.display();
         }
     }
 }
