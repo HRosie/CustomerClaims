@@ -11,9 +11,7 @@ public class BankingInfo {
         this.number = number;
     }
 
-    public String getBank() {
-        return bank;
-    }
+    public String getBank() { return bank; }
 
     public void setBank(String bank) {
         this.bank = bank;

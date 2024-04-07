@@ -1,7 +1,7 @@
 package Code.Customer;
 
-import Code.Claims.Claims;
-import Code.Claims.ClaimsView;
+import Code.Claims.*;
+import Code.Functions.*;
 
 public class CustomersView {
     public void displayCustomerAll(Customer customer) {

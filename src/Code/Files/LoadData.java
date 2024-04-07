@@ -1,8 +1,8 @@
 package Code.Files;
 
-import Code.Customer.*;
 import Code.Claims.*;
-import Code.InsuranceID.InsuranceID;
+import Code.Customer.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,114 +14,109 @@ import java.util.List;
 
 public class LoadData {
 
-    public static List<Claims> loadClaimsData(String filePath) {
+    public static void main(String[] args) {
+        String claimsFilePath = "Storage/Claims.txt";
+        String customerFilePath = "Storage/Customer.txt";
+        String insuranceFilePath = "Storage/InsuranceID.txt";
+        String bankInfoFilePath = "Storage/bankInfo.txt";
+        List<Claims> claimsList = loadClaims(claimsFilePath, customerFilePath, insuranceFilePath, bankInfoFilePath);
+        // Use the loaded claims data...
+    }
+
+    public static List<Claims> loadClaims(String claimsFilePath, String customerFilePath, String insuranceFilePath, String bankInfoFilePath) {
         List<Claims> claimsList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+
+        List<Customer> customers = loadCustomers(customerFilePath);
+        List<InsuranceID> insuranceIDs = loadInsuranceIDs(insuranceFilePath);
+        List<BankingInfo> bankingInfos = loadBankInfo(bankInfoFilePath);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(claimsFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Claims claim = parseClaim(line);
-                if (claim != null) {
-                    claimsList.add(claim);
+                String[] data = line.split(",");
+                String claimID = data[0];
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date claimDate = dateFormat.parse(data[1]);
+                Date examDate = dateFormat.parse(data[2]);
+                String customerName = data[3];
+                int documentNumbers = Integer.parseInt(data[4]);
+                List<String> documents = new ArrayList<>();
+                for (int i = 0; i < documentNumbers; i++) {
+                    documents.add(data[5 + i]);
                 }
+                double claimAmount = Double.parseDouble(data[5 + documentNumbers]);
+                Status status = Status.valueOf(data[6 + documentNumbers]);
+                String bankName = data[7 + documentNumbers];
+                String accountHolderName = data[8 + documentNumbers];
+                String accountNumber = data[9 + documentNumbers];
+
+                Customer customer = findCustomerByName(customerName, customers);
+                if (customer == null) {
+                    continue;
+                }
+
+                InsuranceID insuranceID = findInsuranceByID(customer, insuranceIDs);
+                if (insuranceID == null) {
+                    continue;
+                }
+
+                BankingInfo bankInfo = findBankInfoByName(bankName, bankingInfos);
+                if (bankInfo == null) {
+                    continue;
+                }
+
+                Claims claim = new Claims(claimID, claimDate, examDate, customer, insuranceID, documentNumbers, documents, claimAmount, status, bankInfo);
+                claimsList.add(claim);
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
         return claimsList;
     }
 
-    private static Claims parseClaim(String line) throws ParseException {
-        String[] parts = line.split(",");
-        if (parts.length != 13) {
-            return null;
-        }
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String claimID = parts[0];
-        Date claimDate = dateFormat.parse(parts[1]);
-        Date examDate = dateFormat.parse(parts[2]);
-        String customerID = parts[3];
-        String customerName = parts[4];
-        String cardNumber = parts[5];
-        String policyOwner = parts[6];
-        String[] documents = parts[7].split(",");
-        double claimAmount = Double.parseDouble(parts[8]);
-        Status status = Status.valueOf(parts[9]);
-        String bank = parts[10];
-        String name = parts[11];
-        String number = parts[12];
-
-        Customer insurancePeople = new Customer(customerID, customerName, null, null);
-        InsuranceID insuranceID = new InsuranceID(cardNumber, insurancePeople, policyOwner, null);
-        List<String> documentList = new ArrayList<>();
-        for (String doc : documents) {
-            documentList.add(doc);
-        }
-        BankingInfo bankInfo = new BankingInfo(bank, name, number);
-
-        return new Claims(claimID, claimDate, examDate, insurancePeople, insuranceID, documentList, claimAmount, status, bankInfo);
+    private static List<Customer> loadCustomers(String customerFilePath) {
+        List<Customer> customers = new ArrayList<>();
+        // Implement loading customers from file
+        return customers;
     }
 
-    public static List<Customer> loadCustomerData(String filePath) {
-        List<Customer> customerList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Customer customer = parseCustomer(line);
-                if (customer != null) {
-                    customerList.add(customer);
-                }
+    private static List<InsuranceID> loadInsuranceIDs(String insuranceFilePath) {
+        List<InsuranceID> insuranceIDs = new ArrayList<>();
+        // Implement loading insurance IDs from file
+        return insuranceIDs;
+    }
+
+    private static List<BankingInfo> loadBankInfo(String bankInfoFilePath) {
+        List<BankingInfo> bankingInfos = new ArrayList<>();
+        // Implement loading bank info from file
+        return bankingInfos;
+    }
+
+    private static Customer findCustomerByName(String customerName, List<Customer> customers) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerName().equals(customerName)) {
+                return customer;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return customerList;
+        return null;
     }
 
-    private static Customer parseCustomer(String line) {
-        String[] parts = line.split(",");
-        if (parts.length != 4) {
-            return null;
-        }
-
-        String customerID = parts[0];
-        String customerName = parts[1];
-        String cardNumber = parts[2];
-        int claimsCount = Integer.parseInt(parts[3]);
-        // You may want to load claims data here for the customer, but since we're only parsing customer data, claims list is null for now
-        return new Customer(customerID, customerName, new InsuranceID(cardNumber, null, null, null), null);
-    }
-
-    public static List<InsuranceID> loadInsuranceIDData(String filePath) {
-        List<InsuranceID> insuranceIDList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                InsuranceID insuranceID = parseInsuranceID(line);
-                if (insuranceID != null) {
-                    insuranceIDList.add(insuranceID);
-                }
+    private static InsuranceID findInsuranceByID(Customer customer, List<InsuranceID> insuranceIDs) {
+        for (InsuranceID insuranceID : insuranceIDs) {
+            if (insuranceID.getCardHolder().equals(customer)) {
+                return insuranceID;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
-        return insuranceIDList;
+        return null;
     }
 
-    private static InsuranceID parseInsuranceID(String line) throws ParseException {
-        String[] parts = line.split(",");
-        if (parts.length != 4) {
-            return null;
+    private static BankingInfo findBankInfoByName(String bankName, List<BankingInfo> bankingInfos) {
+        for (BankingInfo bankInfo : bankingInfos) {
+            if (bankInfo.getBank().equals(bankName)) {
+                return bankInfo;
+            }
         }
-
-        String cardNumber = parts[0];
-        String customerID = parts[1];
-        String policyOwner = parts[2];
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        Date expDate = dateFormat.parse(parts[3]);
-        // You may want to load customer data here for the insurance ID, but since we're only parsing insurance ID data, customer is null for now
-        return new InsuranceID(cardNumber, null, policyOwner, expDate);
+        return null;
     }
 }

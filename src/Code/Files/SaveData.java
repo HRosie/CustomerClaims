@@ -1,47 +1,15 @@
 package Code.Files;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import Code.Claims.*;
 import Code.Customer.*;
-import Code.InsuranceID.*;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Set;
 
 public class SaveData {
-
-    public static void saveClaimsData(List<Claims> claimsList, String filePath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Claims claim : claimsList) {
-                writer.write(claimToString(claim));
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String claimToString(Claims claim) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String documents = String.join(",", claim.getDocuments());
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                claim.getClaimID(),
-                dateFormat.format(claim.getClaimDate()),
-                dateFormat.format(claim.getExamDate()),
-                claim.getInsurancePeople().getCustomerId(),
-                claim.getInsurancePeople().getCustomerName(),
-                claim.getInsuranceID().getCardNumber(),
-                claim.getInsuranceID().getPolicyOwner(),
-                documents,
-                claim.getClaimAmount(),
-                claim.getStatus().name(),
-                claim.getBankInfo().getBank(),
-                claim.getBankInfo().getName(),
-                claim.getBankInfo().getNumber());
-    }
-
-    public static void saveCustomerData(List<Customer> customers, String filePath) {
+    public static void saveCustomers(Set<Customer> customers, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Customer customer : customers) {
                 writer.write(customerToString(customer));
@@ -53,11 +21,22 @@ public class SaveData {
     }
 
     private static String customerToString(Customer customer) {
-        return String.format("%s,%s,%s,%s",
+        return String.format("%s,%s,%s,%s,%s",
                 customer.getCustomerId(),
                 customer.getCustomerName(),
                 customer.getInsuranceCardID().getCardNumber(),
+                customer.getInsuranceCardID().getPolicyOwner(),
                 customer.getClaims().size());
+    }
+
+    public static void saveClaimsData(List<Claims> claims, String filename) {
+        try (FileOutputStream fos = new FileOutputStream(filename);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(claims);
+            System.out.println("Data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving data: " + e.getMessage());
+        }
     }
 
     public static void saveInsuranceIDData(List<InsuranceID> insuranceIDs, String filePath) {

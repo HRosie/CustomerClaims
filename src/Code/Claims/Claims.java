@@ -1,7 +1,6 @@
 package Code.Claims;
 
-import Code.Customer.Customer;
-import Code.InsuranceID.InsuranceID;
+import Code.Customer.*;
 
 import java.util.Date;
 import java.util.List;
@@ -12,17 +11,19 @@ public class Claims {
     private Date examDate;
     private Customer insurancePeople;
     private InsuranceID insuranceID;
+    private final int documentNumbers;
     private List<String> documents;
     private double claimAmount;
     private Status status;
     private BankingInfo bankInfo;
 
-    public Claims(String claimID, Date claimDate, Date examDate, Customer insurancePeople, InsuranceID insuranceID, List<String> documents, double claimAmount, Status status, BankingInfo bankInfo) {
+    public Claims(String claimID, Date claimDate, Date examDate, Customer insurancePeople, InsuranceID insuranceID, int documentNumbers, List<String> documents, double claimAmount, Status status, BankingInfo bankInfo) {
         this.claimID = claimID;
         this.claimDate = claimDate;
         this.examDate = examDate;
         this.insurancePeople = insurancePeople;
         this.insuranceID = insuranceID;
+        this.documentNumbers = documents.size();
         this.documents = documents;
         this.claimAmount = claimAmount;
         this.status = status;
@@ -68,7 +69,8 @@ public class Claims {
     public void setInsuranceID(InsuranceID insuranceID) {
         this.insuranceID = insuranceID;
     }
-
+    public int getDocumentNumbers() { return documentNumbers; }
+    public void setDocumentNumbers() {}
     public List<String> getDocuments() {
         return documents;
     }
@@ -98,6 +100,8 @@ public class Claims {
     public void setBankInfo(BankingInfo bankInfo) {
         this.bankInfo = bankInfo;
     }
+
+
 
     /*public void display() {
         System.out.println("ClaimID: " + claimID + "            Claim Date: " + claimDate);

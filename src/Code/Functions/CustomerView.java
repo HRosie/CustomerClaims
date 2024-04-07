@@ -1,7 +1,6 @@
 package Code.Functions;
 
 import Code.Customer.*;
-import Code.InsuranceID.*;
 import Code.Claims.*;
 
 public class CustomerView {

@@ -1,6 +1,6 @@
 package Code.Functions;
 
-import Code.Claims.Claims;
+import Code.Claims.*;
 
 import java.util.HashSet;
 import java.util.Set;

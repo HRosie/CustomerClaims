@@ -1,23 +1,27 @@
 package Code.Functions;
 
 import Code.Customer.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CustomerController {
-    private List<Customer> customers;
+    private Set<Customer> customers;
 
     public CustomerController() {
-        this.customers = new ArrayList<>();
+        this.customers = new HashSet<>();
         // Initialize customers from data source if needed
     }
 
-    public Customer getCustomerById(String customerId) {
+    public Customer getCustomerById(String customerName) {
         for (Customer customer : customers) {
-            if (customer.getCustomerId().equals(customerId)) {
+            if (customer.getCustomerName().equals(customerName)) {
                 return customer;
             }
         }
         return null; // Customer not found
+    }
+
+    public Set<Customer> getAllCustomers() {
+        return customers;
     }
 }

@@ -1,23 +1,23 @@
 package Code.Customer;
 
+import Code.Claims.*;
+
 import java.util.List;
-import Code.Claims.Claims;
-import Code.InsuranceID.InsuranceID;
 
 public class PolicyHolder extends Customer {
     private List<DependentCustomer> dependentCustomers;
 
-    public PolicyHolder(String customerID, String customerName, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {
-        super(customerID,customerName,insuranceID, claims);
+    public PolicyHolder(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {
+        super(customerID,customerName, customerType, insuranceID, claims);
         this.dependentCustomers = dependentCustomers;
     }
 
     public void setDependentCustomers(List<DependentCustomer> dependentCustomers) {
         this.dependentCustomers = dependentCustomers;
     }
-    public void addDependentCustomer(DependentCustomer dependentCustomer) {
+    /*public void addDependentCustomer(DependentCustomer dependentCustomer) {
         dependentCustomers.add(dependentCustomer);
-    }
+    }*/
 
     public List<DependentCustomer> getDependentCustomers() {
         return dependentCustomers;
@@ -25,10 +25,6 @@ public class PolicyHolder extends Customer {
 
     public String getName() {
         return super.getCustomerName();
-    }
-
-    public String getCustomerType() {
-        return "Policy Holder";
     }
 
     public void display() {

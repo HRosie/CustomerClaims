@@ -1,11 +1,13 @@
-package Code.Claims;
+package Code.Functions;
+
+import Code.Claims.Claims;
 
 public class ClaimsView {
     public static void displayClaim(Claims claim) {
         System.out.println("ClaimID: " + claim.getClaimID() + "            Claim Date: " + claim.getClaimID());
         System.out.println("-------------");
         System.out.println("Insured People: " + claim.getInsurancePeople() + "            Exam Date: " + claim.getExamDate());
-        System.out.println("Card Number: " + claim.getInsuranceID().getCardNumber());
+        System.out.println("Card Number: " + claim.getInsurancePeople().getInsuranceCardID());
         System.out.println("List of Documents:: ");
         for (String document : claim.getDocuments()) {
             System.out.println("- " + document);

@@ -1,7 +1,5 @@
-package Code.InsuranceID;
+package Code.Customer;
 
-import Code.Customer.Customer;
-import Code.Customer.PolicyHolder;
 import java.util.Date;
 
 public class InsuranceID {
