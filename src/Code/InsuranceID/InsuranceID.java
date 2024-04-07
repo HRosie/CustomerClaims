@@ -7,15 +7,16 @@ import java.util.Date;
 public class InsuranceID {
     private String cardNumber;
     private Customer cardHolder;
-    private PolicyHolder policyOwner;
+    private String policyOwner;
     private Date expDate;
 
-    public InsuranceID(String cardNumber, Customer cardHolder, PolicyHolder policyOwner, Date expDate) {
+    public InsuranceID(String cardNumber, Customer cardHolder, String policyOwner, Date expDate) {
         this.cardNumber = cardNumber;
         this.cardHolder = cardHolder;
         this.policyOwner = policyOwner;
         this.expDate = expDate;
     }
+
 
     public String getCardNumber() {
         return cardNumber;
@@ -33,11 +34,11 @@ public class InsuranceID {
         this.cardHolder = cardHolder;
     }
 
-    public PolicyHolder getPolicyOwner() {
+    public String getPolicyOwner() {
         return policyOwner;
     }
 
-    public void setPolicyOwner(PolicyHolder policyOwner) {
+    public void setPolicyOwner(String policyOwner) {
         this.policyOwner = policyOwner;
     }
 
@@ -52,7 +53,7 @@ public class InsuranceID {
     @Override
     public String toString() {
         return "Card Number: " + cardNumber + ", Card Holder: " + cardHolder.getCustomerName() +
-                ", Policy Owner: " + policyOwner.getName() + ", Expiration Date: " + expDate;
+                ", Policy Owner: " + policyOwner + ", Expiration Date: " + expDate;
     }
 
     public void display() {

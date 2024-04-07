@@ -7,10 +7,10 @@ import Code.InsuranceID.InsuranceID;
 
 import java.util.List;
 
-public abstract class Customer {
-    private String customerId;
-    private String customerName;
-    private InsuranceID insuranceCardID;
+public class Customer {
+    protected String customerId;
+    protected String customerName;
+    protected InsuranceID insuranceCardID;
     private List<Claims> claims;
 
     public Customer(String customerId, String customerName, InsuranceID insuranceCardID, List<Claims> claims) {
@@ -51,8 +51,16 @@ public abstract class Customer {
     public void setClaims(List<Claims> claims) {
         this.claims = claims;
     }
+    public void setCardHolder(String cardHolder) {
+        this.customerName = cardHolder;
+    }
+    public void setPolicyOwner(String policyOwner) {
+        this.customerName = policyOwner;
+    }
 
-    public abstract String getCustomerType();
+    public String getCustomerType() {
+        return null;
+    }
 
     public void displayCustomerOne(Customer customer) {
         System.out.println("Name: " + customerName);

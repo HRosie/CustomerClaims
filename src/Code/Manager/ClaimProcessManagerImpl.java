@@ -1,66 +1,88 @@
 package Code.Manager;
 
 import Code.Claims.Claims;
+import Code.Files.LoadData;
+import Code.Files.SaveData;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class ClaimProcessManagerImpl implements ClaimProcessManager {
+
     private Set<Claims> claimsSet;
 
     public ClaimProcessManagerImpl() {
-        this.claimsSet = new HashSet<>();
+        claimsSet = LoadData.loadClaimsData("Claims.txt");
     }
 
     @Override
     public void addClaim(Claims claim) {
-        claimsSet.add(claim);
-        System.out.println("Claim added successfully.");
+        if (validateClaimId(claim.getClaimID())) {
+            claimsSet.add(claim);
+            SaveData.saveClaimsData(claimsSet, "Claims.txt");
+            System.out.println("Claim added successfully.");
+        } else {
+            System.out.println("Claim ID already exists. Please choose a different ID.");
+        }
     }
 
     @Override
     public void updateClaim(Claims claim) {
-        for (Claims c : claimsSet) {
-            if (c.getClaimID().equals(claim.getClaimID())) {
-                c.setClaimDate(claim.getClaimDate());
-                c.setInsurancePeople(claim.getInsurancePeople());
-                c.setInsuranceID(claim.getInsuranceID());
-                c.setExamDate(claim.getExamDate());
-                c.setClaimAmount(claim.getClaimAmount());
-                c.setStatus(claim.getStatus());
-                c.setBankInfo(claim.getBankInfo());
-                System.out.println("Claim updated successfully.");
-                return;
-            }
+        Claims existingClaim = getClaimById(claim.getClaimID());
+        if (existingClaim != null) {
+            claimsSet.remove(existingClaim);
+            claimsSet.add(claim);
+            SaveData.saveClaimsData(claimsSet, "Claims.txt");
+            System.out.println("Claim updated successfully.");
+        } else {
+            System.out.println("Claim not found. Update failed.");
         }
-        System.out.println("Claim not found.");
     }
 
     @Override
     public void deleteClaim(String claimId) {
-        for (Claims c : claimsSet) {
-            if (c.getClaimID().equals(claimId)) {
-                claimsSet.remove(c);
-                System.out.println("Claim deleted successfully.");
-                return;
-            }
+        Claims existingClaim = getClaimById(claimId);
+        if (existingClaim != null) {
+            claimsSet.remove(existingClaim);
+            SaveData.saveClaimsData(claimsSet, "Claims.txt");
+            System.out.println("Claim deleted successfully.");
+        } else {
+            System.out.println("Claim not found. Deletion failed.");
         }
-        System.out.println("Claim not found.");
     }
 
     @Override
     public void getOneClaim(String claimId) {
-        for (Claims c : claimsSet) {
-            if (c.getClaimID().equals(claimId)) {
-                System.out.println("Claim found:");
-                System.out.println(c);
-                return;
-            }
+        Claims claim = getClaimById(claimId);
+        if (claim != null) {
+            claim.display();
+        } else {
+            System.out.println("Claim not found.");
         }
-        System.out.println("Claim not found.");
     }
 
     @Override
     public Set<Claims> getAllClaim() {
         return claimsSet;
+    }
+
+    // Helper method to validate if claim ID already exists
+    private boolean validateClaimId(String claimId) {
+        for (Claims claim : claimsSet) {
+            if (claim.getClaimID().equals(claimId)) {
+                return false; // Claim ID already exists
+            }
+        }
+        return true; // Claim ID is unique
+    }
+
+    // Helper method to retrieve claim by ID
+    private Claims getClaimById(String claimId) {
+        for (Claims claim : claimsSet) {
+            if (claim.getClaimID().equals(claimId)) {
+                return claim;
+            }
+        }
+        return null; // Claim not found
     }
 }

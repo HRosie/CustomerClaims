@@ -14,10 +14,10 @@ public class Claims {
     private InsuranceID insuranceID;
     private List<String> documents;
     private double claimAmount;
-    private String status;
+    private Status status;
     private BankingInfo bankInfo;
 
-    public Claims(String claimID, Date claimDate, Date examDate, Customer insurancePeople, InsuranceID insuranceID, List<String> documents, double claimAmount, String status, BankingInfo bankInfo) {
+    public Claims(String claimID, Date claimDate, Date examDate, Customer insurancePeople, InsuranceID insuranceID, List<String> documents, double claimAmount, Status status, BankingInfo bankInfo) {
         this.claimID = claimID;
         this.claimDate = claimDate;
         this.examDate = examDate;
@@ -85,11 +85,9 @@ public class Claims {
         this.claimAmount = claimAmount;
     }
 
-    public String getStatus() {
-        return status;
-    }
+    public Status getStatus() { return status; }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -101,7 +99,7 @@ public class Claims {
         this.bankInfo = bankInfo;
     }
 
-    public void display() {
+    /*public void display() {
         System.out.println("ClaimID: " + claimID + "            Claim Date: " + claimDate);
         System.out.println("-------------");
         System.out.println("Insured People: " + insurancePeople + "            Exam Date: " + examDate);
@@ -116,6 +114,6 @@ public class Claims {
         System.out.println("Receiver Banking Info:         Bank: " + bankInfo.getBank() + "           Name: " + bankInfo.getName());
         System.out.println("                                  Number: " + bankInfo.getNumber());
         System.out.println("--------------------------");
-    }
+    }*/
 
 }
