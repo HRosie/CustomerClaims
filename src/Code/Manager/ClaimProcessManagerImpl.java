@@ -55,7 +55,7 @@ public class ClaimProcessManagerImpl implements ClaimProcessManager
     }
 
     @Override
-    public Set<Customer> getAll_C()
+    public Set<Customer> getAllCustomer()
     {
         return customers;
     }
@@ -64,16 +64,10 @@ public class ClaimProcessManagerImpl implements ClaimProcessManager
     {
         for (Customer customer : customers)
         {
-            if (customer.getId().equals(id))
-            {
-                return customer;
-            }
+            if (customer.getId().equals(id)) { return customer;}
         }
         return null;
     }
-    public void addCustomer(Customer customer)
-    {
-        customers.add(customer);
-    }
+    public void addCustomer(Customer customer) { customers.add(customer);}
 
 }

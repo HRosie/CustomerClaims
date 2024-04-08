@@ -2,8 +2,6 @@ package Code.Files;
 
 import Code.Claims.*;
 import Code.Customer.*;
-import Code.Functions.*;
-import Code.Manager.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,7 +16,7 @@ public class SaveData
         {
             for (Customer customer : customers) {
                 StringBuilder lineBuilder = new StringBuilder();
-                lineBuilder.append(customer.getId()).append(",").append(customer.getFullname()).append(",")
+                lineBuilder.append(customer.getId()).append(",").append(customer.getName()).append(",")
                         .append((customer instanceof PolicyHolder ? "PolicyHolder" : "Dependent")).append(",")
                         .append(customer.getInsuranceCard().getCardNumber());
 
@@ -57,7 +55,7 @@ public class SaveData
                 StringBuilder lineBuilder = new StringBuilder();
                 lineBuilder.append(claim.getId()).append(",").append(claim.getClaimDate().toString()).append(",")
                         .append((claim.getInsuredPerson().getId())).append(",")
-                        .append(claim.getCardNumber()).append(",").append((claim.getExamDate().toString())).append(",")
+                        .append(claim.getInsuranceID()).append(",").append((claim.getExamDate().toString())).append(",")
                         .append((claim.getClaimAmount())).append(",").append((claim.getStatus())).append(",")
                         .append((claim.getBankingInfo().getNumber())).append(",");
                 if (claim.getDocuments() != null) {
@@ -87,7 +85,7 @@ public class SaveData
         }
     }
 
-    public void saveReceiverBankingInfo(Set<Claims> claims, String filePath) throws IOException
+    public void saveBankingInfo(Set<Claims> claims, String filePath) throws IOException
     {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath)))
         {

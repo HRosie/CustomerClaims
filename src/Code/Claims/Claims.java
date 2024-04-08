@@ -1,9 +1,9 @@
 package Code.Claims;
 
 import Code.Customer.*;
+import Code.Functions.Date;
 
 import java.util.Set;
-import java.util.Date;
 
 public class Claims
 {
@@ -15,11 +15,9 @@ public class Claims
     private Set<String> documents;
     private double claimAmount;
     private Status status;
-    private BankingInfo receiverBankingInfo;
+    private BankingInfo BankingInfo;
 
-    public Claims(String id, Date claimDate, Customer insuredPerson, String cardNumber,
-                 Date examDate, Set<String> documents, double claimAmount,
-                 Status status, BankingInfo receiverBankingInfo)
+    public Claims(String id, Date claimDate, Customer insuredPerson, String cardNumber, Date examDate, Set<String> documents, double claimAmount, Status status, BankingInfo BankingInfo)
     {
         this.id = id;
         this.claimDate = claimDate;
@@ -29,7 +27,7 @@ public class Claims
         this.documents = documents;
         this.claimAmount = claimAmount;
         this.status = status;
-        this.receiverBankingInfo = receiverBankingInfo;
+        this.BankingInfo = BankingInfo;
     }
 
     public String getId()
@@ -46,7 +44,7 @@ public class Claims
         return insuredPerson;
     }
 
-    public String getCardNumber()
+    public String getInsuranceID()
     {
         return cardNumber;
     }
@@ -73,10 +71,35 @@ public class Claims
 
     public BankingInfo getBankingInfo()
     {
-        return receiverBankingInfo;
+        return BankingInfo;
     }
 
     public void setInsuredPerson(Customer insuredPerson) {
         this.insuredPerson = insuredPerson;
+    }
+
+    public static void displayInfo(Claims claim)
+    {
+        System.out.println("Claim ID: " + claim.getId());
+        System.out.println("Claim Date: " + claim.getClaimDate().toString());
+        System.out.println("Insured Person: " + claim.getInsuredPerson().getName());
+        System.out.println("Card Number: " + claim.getInsuranceID());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("List of Documents:");
+        if (claim.getDocuments() != null) {
+            for (String document : claim.getDocuments()) {
+                System.out.println("- " + document);
+            }
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Claim Amount: " + claim.getClaimAmount());
+        System.out.println("Claim Status: " + claim.getStatus());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Receiver Banking Info: ");
+        BankingInfo bankInfo = claim.getBankingInfo();
+        System.out.println("Bank Name: " + bankInfo.getBankName());
+        System.out.println("Owner Name: " + bankInfo.getOwnerName());
+        System.out.println("Account Number: " + bankInfo.getNumber());
+
     }
 }

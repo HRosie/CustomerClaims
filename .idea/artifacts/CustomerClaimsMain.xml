@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="CustomerClaimsMain">
-    <output-path>$PROJECT_DIR$/out/artifacts/CustomerClaimsMain</output-path>
-    <root id="archive" name="CustomerClaimsMain.jar">
-      <element id="module-output" name="CustomerClaims" />
-    </root>
-  </artifact>
-</component>

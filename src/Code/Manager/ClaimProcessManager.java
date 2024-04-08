@@ -12,6 +12,6 @@ public interface ClaimProcessManager
     Claims getOne(String id);
     Set<Claims> getAll();
 
-    Set<Customer> getAll_C();
+    Set<Customer> getAllCustomer();
     Customer getCustomerById(String id);
 }

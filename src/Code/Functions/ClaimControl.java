@@ -1,42 +1,42 @@
 package Code.Functions;
 
+import Code.Claims.*;
 import Code.Customer.*;
 import Code.Manager.*;
-import Code.Claims.*;
 import Code.Files.*;
 
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
-public class ClaimController
+public class ClaimControl
 {
     private ClaimProcessManager manage;
     private ClaimProcessManagerImpl manager;
-    private ClaimView view;
+    private ClaimMenu menu;
     private SaveData save;
     private LoadData load;
 
 
-    public ClaimController(ClaimProcessManager manage, ClaimView view,SaveData save,LoadData load, ClaimProcessManagerImpl manager)
+    public ClaimControl(ClaimProcessManager manage, ClaimMenu menu,SaveData save,LoadData load, ClaimProcessManagerImpl manager)
     {
         this.manage = manage;
         this.manager = manager;
-        this.view = view;
+        this.menu = menu;
         this.save = save;
         this.load = load;
     }
 
-    public void setView(ClaimView view)
+    public void setMenu(ClaimMenu menu)
     {
-        this.view = view;
+        this.menu = menu;
     }
 
     public void application() throws IOException {
         int choice;
 
         Scanner sc = new Scanner(System.in);
-        Set<Customer> customers = load.loadCustomers("src/Code/Storage/Customers");
+        Set<Customer> customers = load.loadCustomers("src/Code/Storage/Customers.txt");
         for (Customer customer:customers)
         {
             manager.addCustomer(customer);
@@ -49,39 +49,37 @@ public class ClaimController
         }
         do
         {
-            view.displayMenu();
-            System.out.print("Enter your choice: ");
+            menu.displayMenu();
+            System.out.print("Enter choice: ");
             choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice)
             {
                 case 1:
-                    view.createClaimForm();
+                    menu.createClaim();
                     break;
                 case 2:
-                    view.updateClaim();
+                    menu.updateClaim();
                     break;
                 case 3:
-                    view.deleteClaim();
+                    menu.deleteClaim();
                     break;
                 case 4:
-                    view.getSpecifiedClaim();
+                    menu.getOneClaim();
                     break;
                 case 5:
-                    view.getAllClaims();
+                    menu.getAllClaims();
                     break;
                 case 0:
                     save.saveCustomers(getAllCustomers(),"src/Code/Storage/Customers.txt");
                     save.saveClaims(getAllClaims(),"src/Code/Storage/Claims.txt");
                     save.saveInsuranceCard(getAllCustomers(),"src/Code/Storage/Insurance.txt");
-                    save.saveReceiverBankingInfo(getAllClaims(),"src/Code/Storage/BankInfo.txt");
-                    System.out.println("Exiting...");
+                    save.saveBankingInfo(getAllClaims(),"src/Code/Storage/BankInfo.txt");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice.");
             }
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         } while (choice != 0);
     }
 
@@ -93,7 +91,7 @@ public class ClaimController
     {
         manage.update(claim);
     }
-    public Claims    getClaim(String id)
+    public Claims getClaim(String id)
     {
         return manage.getOne(id);
     }
@@ -113,7 +111,7 @@ public class ClaimController
 
     public Set <Customer> getAllCustomers()
     {
-        return manage.getAll_C();
+        return manage.getAllCustomer();
     }
 
 }

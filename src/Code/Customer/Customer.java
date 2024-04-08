@@ -7,14 +7,14 @@ import java.util.Set;
 
 public abstract class Customer
 {
-    private String id;
-    private  String fullname;
+    private String customerId;
+    private  String name;
     private InsuranceID insuranceCard;
     private Set<Claims> claims;
 
-    public Customer(String id, String fullname, InsuranceID insuranceCard, Set<Claims> claims) {
-        this.id = id;
-        this.fullname = fullname;
+    public Customer(String customerId, String name, InsuranceID insuranceCard, Set<Claims> claims) {
+        this.customerId = customerId;
+        this.name = name;
         this.insuranceCard = insuranceCard;
         this.claims = claims != null ? claims : new HashSet<>();
     }
@@ -26,15 +26,15 @@ public abstract class Customer
 
     public String getId()
     {
-        return id;
+        return customerId;
     }
 
-    public String getFullname()
+    public String getName()
     {
-        return fullname;
+        return name;
     }
 
-    public void addClaim(Claims claim)
+    public void addClaims(Claims claim)
     {
         claims.add(claim);
     }

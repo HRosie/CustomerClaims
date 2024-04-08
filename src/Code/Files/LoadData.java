@@ -1,14 +1,14 @@
 package Code.Files;
 
-import Code.Claims.*;
 import Code.Customer.*;
+import Code.Claims.*;
+import Code.Functions.Date;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.Date;
 
 public class LoadData {
     public Set<Customer> loadCustomers(String filePath) throws IOException {
@@ -42,8 +42,10 @@ public class LoadData {
                     }
 
                     Set<Claims> claims = new HashSet<>();
+                    //System.out.print(data.length);
                     if (data.length >= 6 && data[5] != null && !data[5].isEmpty()) {
                         String[] claimsID = data[5].split(";");
+                        //System.out.print("Testing");
                         file = new File("src/Code/Storage/Claims.txt");
                         if (!file.exists()) {
                             file.createNewFile();

@@ -1,7 +1,6 @@
 package Code.Customer;
 
-import java.util.Date;
-
+import Code.Functions.Date;
 public class InsuranceID
 {
     private String cardNumber;

@@ -5,23 +5,17 @@ import Code.Files.*;
 import Code.Manager.*;
 
 import java.io.IOException;
-import java.util.Set;
+import java.text.ParseException;
 
 public class ProgramMain {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         ClaimProcessManagerImpl manager = new ClaimProcessManagerImpl();
-
         SaveData save = new SaveData();
-
         LoadData load = new LoadData();
-
-        ClaimController controller = new ClaimController(manager, null,save,load,manager);
-
-        ClaimView view = new ClaimView(controller);
-
-        controller.setView(view);
-
-        controller.application();
+        ClaimControl control = new ClaimControl(manager, null,save,load,manager);
+        ClaimMenu menu = new ClaimMenu(control);
+        control.setMenu(menu);
+        control.application();
     }
 }
 

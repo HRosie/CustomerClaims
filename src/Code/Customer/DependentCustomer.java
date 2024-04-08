@@ -6,9 +6,8 @@ import java.util.Set;
 
 public class DependentCustomer extends Customer
 {
-    public DependentCustomer(String id, String fullName, InsuranceID insuranceCard,
-                     Set<Claims> claims)
+    public DependentCustomer(String id, String fullName, InsuranceID insuranceId, Set<Claims> claims)
     {
-        super(id, fullName, insuranceCard,claims);
+        super(id, fullName, insuranceId,claims);
     }
 }
