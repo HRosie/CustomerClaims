@@ -1,36 +1,26 @@
 package Code.Customer;
 
-import Code.Claims.*;
+import Code.Claims.Claims;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class PolicyHolder extends Customer {
-    private List<DependentCustomer> dependentCustomers;
+public class PolicyHolder extends Customer
+{
+    private Set<DependentCustomer> dependents;
 
-    public PolicyHolder(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {
-        super(customerID,customerName, customerType, insuranceID, claims);
-        this.dependentCustomers = dependentCustomers;
+    public PolicyHolder(String id, String fullName, InsuranceID insuranceCard,
+                        Set<Claims> claims, Set<DependentCustomer> dependents)
+    {
+        super(id, fullName, insuranceCard,claims);
+        this.dependents = new HashSet<>(dependents);
     }
 
-    public void setDependentCustomers(List<DependentCustomer> dependentCustomers) {
-        this.dependentCustomers = dependentCustomers;
-    }
-    /*public void addDependentCustomer(DependentCustomer dependentCustomer) {
-        dependentCustomers.add(dependentCustomer);
-    }*/
-
-    public List<DependentCustomer> getDependentCustomers() {
-        return dependentCustomers;
+    public void setDependents(Set<DependentCustomer> dependents) {
+        this.dependents = dependents;
     }
 
-    public String getName() {
-        return super.getCustomerName();
-    }
-
-    public void display() {
-        System.out.println("Dependent Customer List:");
-        for (DependentCustomer dependent : dependentCustomers) {
-            System.out.print("- Name: " + dependent.getName());
-        }
+    public Set<DependentCustomer> getDependents() {
+        return dependents;
     }
 }

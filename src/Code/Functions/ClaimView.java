@@ -1,25 +1,309 @@
 package Code.Functions;
 
 import Code.Claims.*;
-public class ClaimView {
+import Code.Customer.*;
 
-    public static void displayClaim(Claims claim) {
-        System.out.println("Claim ID: " + claim.getClaimID());
-        System.out.println("Claim Date: " + claim.getClaimDate());
-        System.out.println("Insured Person: " + claim.getInsurancePeople().getCustomerName());
-        System.out.println("Card Number: " + claim.getInsurancePeople().getInsuranceCardID());
-        System.out.println("Exam Date: " + claim.getExamDate());
-        System.out.println("Documents:");
-        for (String document : claim.getDocuments()) {
-            System.out.println("- " + document);
-        }
-        System.out.println("Claim Amount: " + claim.getClaimAmount());
-        System.out.println("Status: " + claim.getStatus());
-        BankingInfo bankInfo = claim.getBankInfo();
-        System.out.println("Receiver Banking Info:");
-        System.out.println("Bank: " + bankInfo.getBank());
-        System.out.println("Name: " + bankInfo.getName());
-        System.out.println("Number: " + bankInfo.getNumber());
-        System.out.println("------------------------------");
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Date;
+
+public class ClaimView
+{
+    private ClaimController controller;
+    private Scanner sc;
+
+    public ClaimView(ClaimController controller)
+    {
+        this.controller = controller;
+        this.sc = new Scanner(System.in);
     }
+
+    public void displayMenu()
+    {
+        System.out.println("Welcome, admin!");
+        System.out.println("~~~ Claim Process Manager ~~~");
+        System.out.println("Enter 1: Add Claim");
+        System.out.println("Enter 2: Update Claim");
+        System.out.println("Enter 3: Delete Claim");
+        System.out.println("Enter 4: Get a specified Claim");
+        System.out.println("Enter 5: Get All Claims");
+        System.out.println("Enter 0: Exit");
+    }
+
+    public void createClaimForm()
+    {
+        System.out.println("~~ Creating a new claim ~~");
+
+        System.out.print("Enter Claim ID: ");
+        String id = sc.nextLine();
+
+        System.out.print("Enter Claim Date (format dd/mm/yyyy): ");
+        String claimDateStr = sc.nextLine();
+        Date claimDate = new Date(claimDateStr);
+
+        Customer insuredPerson;
+        do
+        {
+            System.out.print("Enter Insured Person's ID: ");
+            String insuredPersonId = sc.nextLine();
+            insuredPerson = findCustomerById(insuredPersonId);
+            if (insuredPerson == null) System.out.println("Insured Person is not exist!");
+        } while (insuredPerson == null);
+
+        String cardNumber = null;
+        cardNumber = insuredPerson.getInsuranceCard().getCardNumber();
+
+        System.out.print("Enter Examination Date (format dd/mm/yyyy): ");
+        String examDateStr = sc.nextLine();
+        Date examDate = new Date(examDateStr);
+
+        Set<String> documents = gatherDocuments(id, cardNumber);
+
+        System.out.print("Enter Claim Amount: ");
+        double claimAmount = sc.nextDouble();
+
+        sc.nextLine();
+
+        Status status = Status.NEW;
+
+        System.out.println("Enter Receiver Banking Info:");
+        System.out.print("Bank Name: ");
+        String bankName = sc.nextLine();
+        System.out.print("Owner Name: ");
+        String ownerName = sc.nextLine();
+        System.out.print("Account Number: ");
+        String accountNumber = sc.nextLine();
+
+        BankingInfo receiverBankingInfo = new BankingInfo(bankName, ownerName, accountNumber);
+
+        Claims newClaim = new Claims(
+                id,
+                claimDate,
+                insuredPerson,
+                cardNumber,
+                examDate,
+                documents,
+                claimAmount,
+                status,
+                receiverBankingInfo
+        );
+
+        controller.addClaim(newClaim);
+        System.out.println("Claim added successfully!");
+        insuredPerson.addClaim(newClaim);
+    }
+
+    public void updateClaim()
+    {
+        System.out.println("~~ Updating a claim ~~");
+
+        System.out.print("Enter the ID of the claim you want to update: ");
+        String claimId = sc.nextLine();
+        Claims existingClaim = controller.getClaim(claimId);
+
+        if (existingClaim == null)
+        {
+            System.out.println("Claim with ID " + claimId + " does not exist.");
+            return;
+        }
+
+        Customer tmp = findCustomerById(existingClaim.getInsuredPerson().getId());
+        tmp.removeClaim(existingClaim);
+        controller.deleteClaim(claimId);
+
+        System.out.print("Enter Claim ID: ");
+        String id = sc.nextLine();
+
+        System.out.print("Enter Claim Date (format dd/mm/yyyy): ");
+        String claimDateStr = sc.nextLine();
+        Date claimDate = new Date(claimDateStr);
+
+        Customer insuredPerson;
+        do
+        {
+            System.out.print("Enter Insured Person's ID: ");
+            String insuredPersonId = sc.nextLine();
+            insuredPerson = findCustomerById(insuredPersonId);
+            if (insuredPerson == null) System.out.println("Insured Person is not exist!");
+        } while (insuredPerson == null);
+
+        String cardNumber = null;
+
+        cardNumber = insuredPerson.getInsuranceCard().getCardNumber();
+
+        System.out.print("Enter Examination Date (format dd/mm/yyyy): ");
+        String examDateStr = sc.nextLine();
+        Date examDate = new Date(examDateStr);
+
+        Set<String> documents = gatherDocuments(id, cardNumber);
+
+        System.out.print("Enter Claim Amount: ");
+        double claimAmount = sc.nextDouble();
+
+        sc.nextLine();
+
+        System.out.print("Enter a Claim status (New,Processing,Done): ");
+        String status_str = sc.nextLine();
+        Status status;
+        if (status_str.equalsIgnoreCase("New"))
+        {
+            status = Status.NEW;
+        }
+        else if (status_str.equalsIgnoreCase("Processing"))
+        {
+            status = Status.PROCESSING;
+        }else
+        {
+            status = Status.DONE;
+        }
+
+        System.out.println("Enter Receiver Banking Info:");
+        System.out.print("Bank Name: ");
+        String bankName = sc.nextLine();
+        System.out.print("Owner Name: ");
+        String ownerName = sc.nextLine();
+        System.out.print("Account Number: ");
+        String accountNumber = sc.nextLine();
+
+        BankingInfo receiverBankingInfo = new BankingInfo(bankName, ownerName, accountNumber);
+
+        Claims updatedClaim = new Claims
+                (
+                        id,
+                        claimDate,
+                        insuredPerson,
+                        cardNumber,
+                        examDate,
+                        documents,
+                        claimAmount,
+                        status,
+                        receiverBankingInfo
+                );
+
+        controller.updateClaim(updatedClaim);
+        System.out.println("Claim updated successfully!");
+        insuredPerson.addClaim(updatedClaim);
+    }
+
+    public void deleteClaim()
+    {
+        System.out.println("~~ Deleting a claim ~~");
+
+        System.out.print("Enter the ID of the claim you want to delete:");
+        String claimId = sc.nextLine();
+
+        Claims existingClaim = controller.getClaim(claimId);
+
+        if (existingClaim == null)
+        {
+            System.out.println("Claim with ID " + claimId + " does not exist.");
+            return;
+        }
+
+        System.out.println("Are you sure you want to delete the following claim?");
+
+        printClaimDetails(existingClaim);
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Enter 1: Yes");
+        System.out.println("Enter 2: No");
+        System.out.print("Your choice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        if (choice == 1)
+        {
+            findCustomerById(existingClaim.getInsuredPerson().getId()).removeClaim(existingClaim);
+            controller.deleteClaim(claimId);
+            System.out.println("Claim deleted successfully!");
+        } else
+        {
+            System.out.println("You cancelled the Deletion!");
+        }
+    }
+
+    public void getSpecifiedClaim()
+    {
+        System.out.println("~~ Getting a specified claim ~~");
+
+        System.out.print("Enter the ID of the claim you want to get:");
+        String claimId = sc.nextLine();
+
+        Claims specifiedClaim = controller.getClaim(claimId);
+
+        if (specifiedClaim == null)
+        {
+            System.out.println("Claim with ID " + claimId + " does not exist.");
+        } else
+        {
+            printClaimDetails(specifiedClaim);
+        }
+    }
+
+    public void getAllClaims()
+    {
+        System.out.println("~~ Getting All Claims ~~");
+
+        Set<Claims> claims = controller.getAllClaims();
+
+        if (claims.isEmpty())
+        {
+            System.out.println("No claims found.");
+        } else
+        {
+            for (Claims claim : claims)
+            {
+                printClaimDetails(claim);
+                System.out.println("------------------------");
+            }
+        }
+    }
+    private void printClaimDetails(Claims claim)
+    {
+        System.out.println("Claim ID: " + claim.getId());
+        System.out.println("Claim Date: " + claim.getClaimDate().toString());
+        System.out.println("Insured Person: " + claim.getInsuredPerson().getFullname());
+        System.out.println("Card Number: " + claim.getCardNumber());
+
+        System.out.println("List of Documents:");
+        if (claim.getDocuments() != null) {
+            for (String document : claim.getDocuments()) {
+                System.out.println("- " + document);
+            }
+        }
+
+        System.out.println("Claim Amount: " + claim.getClaimAmount());
+        System.out.println("Claim Status: " + claim.getStatus());
+
+        System.out.println("Receiver Banking Info: ");
+        BankingInfo receiverInfo = claim.getBankingInfo();
+        System.out.println("Bank Name: " + receiverInfo.getBankName());
+        System.out.println("Owner Name: " + receiverInfo.getOwnerName());
+        System.out.println("Account Number: " + receiverInfo.getNumber());
+
+    }
+    private Set<String> gatherDocuments(String claimId, String cardNumber)
+    {
+        Set<String> documents = new HashSet<>();
+
+        System.out.print("Enter the number of documents:");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print("Enter Document Name for Document " + i + ":");
+            String documentName = sc.nextLine();
+            String documentFileName = claimId + "_" + cardNumber + "_" + documentName + ".pdf";
+            documents.add(documentFileName);
+        }
+
+        return documents;
+    }
+    private Customer findCustomerById(String id)
+    {
+        return controller.getCustomerById(id);
+    }
+
+
 }

@@ -10,28 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="More controller, prepare to fix Claims class">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Code/Functions/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Claims/ClaimsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Files/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/LoadData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Files/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/SaveData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Main/MainView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Main/programMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,25 +68,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ProgramMain.executor": "Run",
-    "Application.programMain.executor": "Run",
-    "JAR Application.ProgramMain.executor": "Run",
-    "JAR Application.ProgramMainJar.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "ViewUpdate",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar",
-    "onboarding.tips.debug.path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ProgramMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.programMain.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.ProgramMain.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.ProgramMainJar.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ViewUpdate&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code\Files" />

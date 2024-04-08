@@ -1,31 +1,14 @@
 package Code.Customer;
 
-import Code.Claims.*;
+import Code.Claims.Claims;
 
-import java.util.List;
+import java.util.Set;
 
-public class DependentCustomer extends Customer{
-    private PolicyHolder holderName;
-
-    public DependentCustomer(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claim, PolicyHolder holderName) {
-        super(customerID,customerName, customerType, insuranceID, claim );
-        this.holderName = holderName;
-    }
-
-
-    public void setHolderName(PolicyHolder holderName) {
-        this.holderName = holderName;
-    }
-
-    public PolicyHolder getHolderName() {
-        return holderName;
-    }
-
-    public String getName() {
-        return super.getCustomerName();
-    }
-    //@Override
-    public void display() {
-        System.out.println("Holder name: " + holderName.getName());
+public class DependentCustomer extends Customer
+{
+    public DependentCustomer(String id, String fullName, InsuranceID insuranceCard,
+                     Set<Claims> claims)
+    {
+        super(id, fullName, insuranceCard,claims);
     }
 }

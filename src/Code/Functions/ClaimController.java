@@ -1,54 +1,119 @@
 package Code.Functions;
 
+import Code.Customer.*;
+import Code.Manager.*;
 import Code.Claims.*;
+import Code.Files.*;
 
-import java.util.HashSet;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.Set;
 
-public class ClaimController {
-    private Set<Claims> claims;
+public class ClaimController
+{
+    private ClaimProcessManager manage;
+    private ClaimProcessManagerImpl manager;
+    private ClaimView view;
+    private SaveData save;
+    private LoadData load;
 
-    public ClaimController() {
-        this.claims = new HashSet<>();
+
+    public ClaimController(ClaimProcessManager manage, ClaimView view,SaveData save,LoadData load, ClaimProcessManagerImpl manager)
+    {
+        this.manage = manage;
+        this.manager = manager;
+        this.view = view;
+        this.save = save;
+        this.load = load;
     }
 
-    public void addClaim(Claims claim) {
-        claims.add(claim);
+    public void setView(ClaimView view)
+    {
+        this.view = view;
     }
 
-    public boolean updateClaim(Claims updatedClaim) {
-        for (Claims claim : claims) {
-            if (claim.getClaimID().equals(updatedClaim.getClaimID())) {
-                // Update the claim
-                claim.setClaimDate(updatedClaim.getClaimDate());
-                claim.setInsurancePeople(updatedClaim.getInsurancePeople());
-                // Update other claim attributes as needed
-                return true; // Claim updated successfully
+    public void application() throws IOException {
+        int choice;
+
+        Scanner sc = new Scanner(System.in);
+        Set<Customer> customers = load.loadCustomers("src/Code/Storage/Customers");
+        for (Customer customer:customers)
+        {
+            manager.addCustomer(customer);
+            Set<Claims> claims = customer.getClaims();
+            for (Claims claim : claims)
+            {
+                claim.setInsuredPerson(customer);
+                manage.add(claim);
             }
         }
-        return false; // Claim not found, update failed
-    }
+        do
+        {
+            view.displayMenu();
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
 
-    public boolean deleteClaim(String id) {
-        for (Claims claim : claims) {
-            if (claim.getClaimID().equals(id)) {
-                claims.remove(claim);
-                return true; // Claim deleted successfully
+            switch (choice)
+            {
+                case 1:
+                    view.createClaimForm();
+                    break;
+                case 2:
+                    view.updateClaim();
+                    break;
+                case 3:
+                    view.deleteClaim();
+                    break;
+                case 4:
+                    view.getSpecifiedClaim();
+                    break;
+                case 5:
+                    view.getAllClaims();
+                    break;
+                case 0:
+                    save.saveCustomers(getAllCustomers(),"src/Code/Storage/Customers.txt");
+                    save.saveClaims(getAllClaims(),"src/Code/Storage/Claims.txt");
+                    save.saveInsuranceCard(getAllCustomers(),"src/Code/Storage/Insurance.txt");
+                    save.saveReceiverBankingInfo(getAllClaims(),"src/Code/Storage/BankInfo.txt");
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
-        }
-        return false; // Claim not found, delete failed
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        } while (choice != 0);
     }
 
-    public Claims getClaimById(String id) {
-        for (Claims claim : claims) {
-            if (claim.getClaimID().equals(id)) {
-                return claim; // Return the claim if found
-            }
-        }
-        return null; // Claim not found
+    public void addClaim(Claims claim)
+    {
+        manage.add(claim);
+    }
+    public void updateClaim(Claims claim)
+    {
+        manage.update(claim);
+    }
+    public Claims    getClaim(String id)
+    {
+        return manage.getOne(id);
+    }
+    public void deleteClaim(String claimId)
+    {
+        manage.delete(claimId);
+    }
+    public Customer getCustomerById(String id)
+    {
+        return manage.getCustomerById(id);
     }
 
-    public Set<Claims> getAllClaims() {
-        return claims;
+    public Set<Claims> getAllClaims()
+    {
+        return manage.getAll();
     }
+
+    public Set <Customer> getAllCustomers()
+    {
+        return manage.getAll_C();
+    }
+
 }
