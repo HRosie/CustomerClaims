@@ -9,31 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="More controller, prepare to fix Claims class">
-      <change afterPath="$PROJECT_DIR$/src/Code/Functions/Date.java" afterDir="false" />
+    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="Second Fix&#10;Changes: almost all">
+      <change afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Code/Storage/Claims.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Code/Storage/Customers.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Files/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/LoadData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Files/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/SaveData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712465812549</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Second Fix&#10;Changes: almost all">
+      <option name="closed" value="true" />
+      <created>1712584574270</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712584574270</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +184,7 @@
     <MESSAGE value="New classes for every customer type" />
     <MESSAGE value="Base Manager and claim view" />
     <MESSAGE value="More controller, prepare to fix Claims class" />
-    <option name="LAST_COMMIT_MESSAGE" value="More controller, prepare to fix Claims class" />
+    <MESSAGE value="Second Fix&#10;Changes: almost all" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second Fix&#10;Changes: almost all" />
   </component>
 </project>
