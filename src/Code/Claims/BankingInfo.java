@@ -1,37 +1,30 @@
 package Code.Claims;
 
-public class BankingInfo {
-    private String bank;
-    private String name;
+public class BankingInfo
+{
+    private String bankName;
+    private String ownerName;
     private String number;
 
-    public BankingInfo(String bank, String name, String number) {
-        this.bank = bank;
-        this.name = name;
+    public BankingInfo(String bankName, String ownerName, String number)
+    {
+        this.bankName = bankName;
+        this.ownerName = ownerName;
         this.number = number;
     }
 
-    public String getBank() {
-        return bank;
+    public String getBankName()
+    {
+        return bankName;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public String getOwnerName()
+    {
+        return ownerName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNumber() {
+    public String getNumber()
+    {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 }

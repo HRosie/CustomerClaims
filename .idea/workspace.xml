@@ -9,14 +9,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="New classes for every customer type">
-      <change afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
+    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="And with text Files of course">
+      <change afterPath="$PROJECT_DIR$/src/Code/Functions/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Files/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/LoadData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Files/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/SaveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code/Test" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Test" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -33,7 +49,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Controll" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,14 +67,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ProgramMain.executor": "Run",
     "Application.programMain.executor": "Run",
+    "JAR Application.Main.executor": "Run",
+    "JAR Application.ProgramMain.executor": "Run",
     "JAR Application.ProgramMainJar.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Customer",
+    "git-widget-placeholder": "ViewUpdate",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Java code/ASM1",
+    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar",
     "onboarding.tips.debug.path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
@@ -66,9 +85,14 @@
     "settings.editor.selected.configurable": "inlay.hints"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code\Files" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="ProgramMainJar" type="JarApplication">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CustomerClaims_jar/CustomerClaims.jar" />
+    <configuration name="Main" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar" />
       <option name="WORKING_DIRECTORY" value="C:\Users\monsi\IdeaProjects\CustomerClaims" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
@@ -77,6 +101,20 @@
         </option>
       </method>
     </configuration>
+    <configuration name="ProgramMain" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\monsi\IdeaProjects\CustomerClaims" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="CustomerClaims:jar" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JAR Application.ProgramMain" />
+      <item itemvalue="JAR Application.Main" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -118,7 +156,39 @@
       <option name="project" value="LOCAL" />
       <updated>1712379010556</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Base Manager and claim view">
+      <option name="closed" value="true" />
+      <created>1712424621325</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712424621325</updated>
+    </task>
+    <task id="LOCAL-00005" summary="More controller, prepare to fix Claims class">
+      <option name="closed" value="true" />
+      <created>1712465812549</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712465812549</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Second Fix&#10;Changes: almost all">
+      <option name="closed" value="true" />
+      <created>1712584574270</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712584574270</updated>
+    </task>
+    <task id="LOCAL-00007" summary="And with text Files of course">
+      <option name="closed" value="true" />
+      <created>1712584954652</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712584954652</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +217,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Firsy step" />
     <MESSAGE value="New classes for every customer type" />
-    <option name="LAST_COMMIT_MESSAGE" value="New classes for every customer type" />
+    <MESSAGE value="Base Manager and claim view" />
+    <MESSAGE value="More controller, prepare to fix Claims class" />
+    <MESSAGE value="Second Fix&#10;Changes: almost all" />
+    <MESSAGE value="And with text Files of course" />
+    <option name="LAST_COMMIT_MESSAGE" value="And with text Files of course" />
   </component>
 </project>

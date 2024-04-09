@@ -1,0 +1,136 @@
+Index: src/Code/Functions/ClaimsView.java
+===================================================================
+diff --git a/src/Code/Functions/ClaimsView.java b/src/Code/Functions/ClaimsView.java
+deleted file mode 100644
+--- a/src/Code/Functions/ClaimsView.java	
++++ /dev/null	
+@@ -1,22 +0,0 @@
+-package Code.Functions;
+-
+-import Code.Claims.Claims;
+-
+-public class ClaimsView {
+-    public static void displayClaim(Claims claim) {
+-        System.out.println("ClaimID: " + claim.getClaimID() + "            Claim Date: " + claim.getClaimID());
+-        System.out.println("-------------");
+-        System.out.println("Insured People: " + claim.getInsurancePeople() + "            Exam Date: " + claim.getExamDate());
+-        System.out.println("Card Number: " + claim.getInsurancePeople().getInsuranceCardID());
+-        System.out.println("List of Documents:: ");
+-        for (String document : claim.getDocuments()) {
+-            System.out.println("- " + document);
+-        }
+-        System.out.println("-------------");
+-        System.out.print("Claim Amount: " + claim.getClaimAmount());
+-        System.out.println("Status: " + claim.getStatus());
+-        System.out.println("Receiver Banking Info:         Bank: " + claim.getBankInfo().getBank() + "           Name: " + claim.getBankInfo().getName());
+-        System.out.println("                                  Number: " + claim.getBankInfo().getNumber());
+-        System.out.println("--------------------------");
+-    }
+-}
+Index: src/Code/Functions/CustomerView.java
+===================================================================
+diff --git a/src/Code/Functions/CustomerView.java b/src/Code/Functions/CustomerView.java
+deleted file mode 100644
+--- a/src/Code/Functions/CustomerView.java	
++++ /dev/null	
+@@ -1,30 +0,0 @@
+-package Code.Functions;
+-
+-import Code.Customer.*;
+-import Code.Claims.*;
+-
+-public class CustomerView {
+-    public static void displayCustomer(Customer customer) {
+-        System.out.println("Name: " + customer.getCustomerName()
+-        );
+-        System.out.println("CustomerID: " + customer.getCustomerId() + "        Customer Type: " + customer.getCustomerType());
+-        if (customer instanceof PolicyHolder policyHolder) {
+-            policyHolder.display();
+-        }
+-        else {
+-            DependentCustomer dependentCustomer = (DependentCustomer) customer;
+-            dependentCustomer.display();
+-        }
+-        System.out.println("----------------------------------------");
+-        System.out.println("Insurance Card Information:");
+-        customer.getInsuranceCardID().display();
+-        System.out.println("----------------------------------------");
+-        /* System.out.println("Card Number: " + insuranceCardID.getCardNumber());
+-        System.out.println("Policy Owner: " + insuranceCardID.getPolicyOwner().getName());
+-        System.out.println("Expiration Date: " + insuranceCardID.getExpDate());*/
+-        System.out.println("Claim List: ");
+-        for (Claims claim : customer.getClaims()) {
+-            ClaimsView.displayClaim(claim);
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: src/Code/Customer/CustomersView.java
+===================================================================
+diff --git a/src/Code/Customer/CustomersView.java b/src/Code/Customer/CustomersView.java
+deleted file mode 100644
+--- a/src/Code/Customer/CustomersView.java	
++++ /dev/null	
+@@ -1,29 +0,0 @@
+-package Code.Customer;
+-
+-import Code.Claims.*;
+-import Code.Functions.*;
+-
+-public class CustomersView {
+-    public void displayCustomerAll(Customer customer) {
+-        System.out.println("Name: " + customer.getCustomerName());
+-        System.out.println("CustomerID: " + customer.getCustomerId() + "        Customer Type: " + customer.getCustomerType());
+-        if (customer instanceof PolicyHolder policyHolder) {
+-            policyHolder.display();
+-        }
+-        else {
+-            DependentCustomer dependentCustomer = (DependentCustomer) customer;
+-            dependentCustomer.display();
+-        }
+-        System.out.println("----------------------------------------");
+-        System.out.println("Insurance Card:");
+-        customer.getInsuranceCardID().display();
+-        System.out.println("----------------------------------------");
+-        /* System.out.println("Card Number: " + insuranceCardID.getCardNumber());
+-        System.out.println("Policy Owner: " + insuranceCardID.getPolicyOwner().getName());
+-        System.out.println("Expiration Date: " + insuranceCardID.getExpDate());*/
+-        System.out.println("Claim List: ");
+-        for (Claims claim : customer.getClaims()) {
+-            ClaimsView.displayClaim(claim);
+-        }
+-    }
+-}
+Index: src/Code/Functions/ClaimView.java
+===================================================================
+diff --git a/src/Code/Functions/ClaimView.java b/src/Code/Functions/ClaimView.java
+deleted file mode 100644
+--- a/src/Code/Functions/ClaimView.java	
++++ /dev/null	
+@@ -1,25 +0,0 @@
+-package Code.Functions;
+-
+-import Code.Claims.*;
+-public class ClaimView {
+-
+-    public static void displayClaim(Claims claim) {
+-        System.out.println("Claim ID: " + claim.getClaimID());
+-        System.out.println("Claim Date: " + claim.getClaimDate());
+-        System.out.println("Insured Person: " + claim.getInsurancePeople().getCustomerName());
+-        System.out.println("Card Number: " + claim.getInsurancePeople().getInsuranceCardID());
+-        System.out.println("Exam Date: " + claim.getExamDate());
+-        System.out.println("Documents:");
+-        for (String document : claim.getDocuments()) {
+-            System.out.println("- " + document);
+-        }
+-        System.out.println("Claim Amount: " + claim.getClaimAmount());
+-        System.out.println("Status: " + claim.getStatus());
+-        BankingInfo bankInfo = claim.getBankInfo();
+-        System.out.println("Receiver Banking Info:");
+-        System.out.println("Bank: " + bankInfo.getBank());
+-        System.out.println("Name: " + bankInfo.getName());
+-        System.out.println("Number: " + bankInfo.getNumber());
+-        System.out.println("------------------------------");
+-    }
+-}
+\ No newline at end of file
