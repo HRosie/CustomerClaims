@@ -1,0 +1,160 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"CustomerClaims:jar\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"44c2562a-7f1f-4971-b132-56502519fc16\" name=\"Changes\" comment=\"And with text Files of course\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/Code/Functions/Date.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Claims/Claims.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Claims/Claims.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/Customer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/Customer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/InsuranceID.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/InsuranceID.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Files/LoadData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Files/LoadData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Files/SaveData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Files/SaveData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/ClaimController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/ClaimControl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/ClaimView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Main/ProgramMain.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Main/ProgramMain.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Storage/BankInfo.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Storage/BankInfo.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Storage/Claims.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Storage/Claims.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Storage/Customers.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Storage/Customers.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Storage/Insurance.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Storage/Insurance.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Test\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Test\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2egR7NMvf3wqViNRZdP7HuGRtT0\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.ProgramMain.executor\": \"Run\",\r\n    \"Application.programMain.executor\": \"Run\",\r\n    \"JAR Application.Main.executor\": \"Run\",\r\n    \"JAR Application.ProgramMain.executor\": \"Run\",\r\n    \"JAR Application.ProgramMainJar.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"ViewUpdate\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java\",\r\n    \"project.structure.last.edited\": \"Artifacts\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"inlay.hints\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\monsi\\IdeaProjects\\CustomerClaims\\src\\Code\\Files\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"JarApplication\">\r\n      <option name=\"JAR_PATH\" value=\"$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\monsi\\IdeaProjects\\CustomerClaims\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <method v=\"2\">\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"CustomerClaims:jar\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ProgramMain\" type=\"JarApplication\">\r\n      <option name=\"JAR_PATH\" value=\"$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\monsi\\IdeaProjects\\CustomerClaims\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <method v=\"2\">\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"CustomerClaims:jar\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"JAR Application.ProgramMain\" />\r\n      <item itemvalue=\"JAR Application.Main\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"44c2562a-7f1f-4971-b132-56502519fc16\" name=\"Changes\" comment=\"\" />\r\n      <created>1712324069046</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1712324069046</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Firsy step\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712327249494</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712327249494</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Firsy step\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712333849914</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712333849914</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"New classes for every customer type\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712379010556</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712379010556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Base Manager and claim view\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712424621325</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712424621325</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"More controller, prepare to fix Claims class\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712465812549</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712465812549</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Second Fix&#10;Changes: almost all\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712584574270</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712584574270</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"And with text Files of course\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712584954652</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712584954652</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"8\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Customer\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Firsy step\" />\r\n    <MESSAGE value=\"New classes for every customer type\" />\r\n    <MESSAGE value=\"Base Manager and claim view\" />\r\n    <MESSAGE value=\"More controller, prepare to fix Claims class\" />\r\n    <MESSAGE value=\"Second Fix&#10;Changes: almost all\" />\r\n    <MESSAGE value=\"And with text Files of course\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"And with text Files of course\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e73315a26d9c0801d6032d861c51b6f907c9ee16)
++++ b/.idea/workspace.xml	(date 1712670109905)
+@@ -9,28 +9,31 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="And with text Files of course">
++    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="More controller, prepare to fix Claims class">
+       <change afterPath="$PROJECT_DIR$/src/Code/Functions/Date.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Files/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/LoadData.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Files/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/SaveData.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimControl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Test" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Test" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -65,42 +68,31 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.ProgramMain.executor": "Run",
+-    "Application.programMain.executor": "Run",
+-    "JAR Application.Main.executor": "Run",
+-    "JAR Application.ProgramMain.executor": "Run",
+-    "JAR Application.ProgramMainJar.executor": "Run",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "ViewUpdate",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar",
+-    "onboarding.tips.debug.path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java",
+-    "project.structure.last.edited": "Artifacts",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "settings.editor.selected.configurable": "inlay.hints"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.ProgramMain.executor&quot;: &quot;Run&quot;,
++    &quot;Application.programMain.executor&quot;: &quot;Run&quot;,
++    &quot;JAR Application.ProgramMain.executor&quot;: &quot;Run&quot;,
++    &quot;JAR Application.ProgramMainJar.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;ViewUpdate&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar&quot;,
++    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code\Files" />
+     </key>
+   </component>
+   <component name="RunManager">
+-    <configuration name="Main" type="JarApplication">
+-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar" />
+-      <option name="WORKING_DIRECTORY" value="C:\Users\monsi\IdeaProjects\CustomerClaims" />
+-      <option name="ALTERNATIVE_JRE_PATH" />
+-      <method v="2">
+-        <option name="BuildArtifacts" enabled="true">
+-          <artifact name="CustomerClaims:jar" />
+-        </option>
+-      </method>
+-    </configuration>
+     <configuration name="ProgramMain" type="JarApplication">
+       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar" />
+       <option name="WORKING_DIRECTORY" value="C:\Users\monsi\IdeaProjects\CustomerClaims" />
+@@ -111,10 +103,6 @@
+         </option>
+       </method>
+     </configuration>
+-    <list>
+-      <item itemvalue="JAR Application.ProgramMain" />
+-      <item itemvalue="JAR Application.Main" />
+-    </list>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+@@ -172,23 +160,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1712465812549</updated>
+     </task>
+-    <task id="LOCAL-00006" summary="Second Fix&#10;Changes: almost all">
+-      <option name="closed" value="true" />
+-      <created>1712584574270</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1712584574270</updated>
+-    </task>
+-    <task id="LOCAL-00007" summary="And with text Files of course">
+-      <option name="closed" value="true" />
+-      <created>1712584954652</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1712584954652</updated>
+-    </task>
+-    <option name="localTasksCounter" value="8" />
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -219,8 +191,6 @@
+     <MESSAGE value="New classes for every customer type" />
+     <MESSAGE value="Base Manager and claim view" />
+     <MESSAGE value="More controller, prepare to fix Claims class" />
+-    <MESSAGE value="Second Fix&#10;Changes: almost all" />
+-    <MESSAGE value="And with text Files of course" />
+-    <option name="LAST_COMMIT_MESSAGE" value="And with text Files of course" />
++    <option name="LAST_COMMIT_MESSAGE" value="More controller, prepare to fix Claims class" />
+   </component>
+ </project>
+\ No newline at end of file

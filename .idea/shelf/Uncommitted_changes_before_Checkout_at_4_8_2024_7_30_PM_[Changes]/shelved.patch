@@ -1,0 +1,1567 @@
+Index: src/Code/Customer/DependentCustomer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Customer;\r\n\r\nimport Code.Claims.*;\r\n\r\nimport java.util.List;\r\n\r\npublic class DependentCustomer extends Customer{\r\n    private PolicyHolder holderName;\r\n\r\n    public DependentCustomer(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claim, PolicyHolder holderName) {\r\n        super(customerID,customerName, customerType, insuranceID, claim );\r\n        this.holderName = holderName;\r\n    }\r\n\r\n\r\n    public void setHolderName(PolicyHolder holderName) {\r\n        this.holderName = holderName;\r\n    }\r\n\r\n    public PolicyHolder getHolderName() {\r\n        return holderName;\r\n    }\r\n\r\n    public String getName() {\r\n        return super.getCustomerName();\r\n    }\r\n    //@Override\r\n    public void display() {\r\n        System.out.println(\"Holder name: \" + holderName.getName());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Customer/DependentCustomer.java b/src/Code/Customer/DependentCustomer.java
+--- a/src/Code/Customer/DependentCustomer.java	
++++ b/src/Code/Customer/DependentCustomer.java	
+@@ -2,17 +2,18 @@
+ 
+ import Code.Claims.*;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ 
+-public class DependentCustomer extends Customer{
++public class DependentCustomer extends Customer {
+     private PolicyHolder holderName;
+ 
+-    public DependentCustomer(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claim, PolicyHolder holderName) {
+-        super(customerID,customerName, customerType, insuranceID, claim );
++    public DependentCustomer(String customerID, String customerName, String customerType, InsuranceID insuranceID, PolicyHolder holderName) {
++        super(customerID, customerName, customerType, insuranceID, new ArrayList<>()); // Empty list of claims
+         this.holderName = holderName;
+     }
+ 
+-
++    // Getters and setters for holderName
+     public void setHolderName(PolicyHolder holderName) {
+         this.holderName = holderName;
+     }
+@@ -21,11 +22,16 @@
+         return holderName;
+     }
+ 
+-    public String getName() {
+-        return super.getCustomerName();
++    @Override
++    public boolean equals(Object obj) {
++        if (this == obj) return true;
++        if (obj == null || getClass() != obj.getClass()) return false;
++        DependentCustomer that = (DependentCustomer) obj;
++        // Check if both holder names are null
++        if (holderName == null && that.holderName == null) return true;
++        // Check if only one of the holder names is null
++        if (holderName == null || that.holderName == null) return false;
++        // Now both holder names are not null, so we can safely compare them
++        return holderName.equals(that.holderName);
+     }
+-    //@Override
+-    public void display() {
+-        System.out.println("Holder name: " + holderName.getName());
+-    }
+-}
++}
+\ No newline at end of file
+Index: src/Code/Customer/Customer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Customer;\r\n\r\n\r\nimport Code.Claims.Claims;\r\n\r\nimport java.util.List;\r\n\r\npublic class Customer {\r\n    protected String customerId;\r\n    protected String customerName;\r\n    private String customerType;\r\n    protected InsuranceID insuranceCardID;\r\n    private List<Claims> claims;\r\n\r\n    public Customer(String customerId, String customerName, String customerType, InsuranceID insuranceCardID, List<Claims> claims) {\r\n        this.customerId = customerId;\r\n        this.customerName = customerName;\r\n        this.customerType = customerType;\r\n        this.insuranceCardID = insuranceCardID;\r\n        this.claims = claims;\r\n    }\r\n\r\n    public String getCustomerId() {\r\n        return customerId;\r\n    }\r\n\r\n    public void setCustomerId(String customerId) {\r\n        this.customerId = customerId;\r\n    }\r\n\r\n    public String getCustomerName() {\r\n        return customerName;\r\n    }\r\n\r\n    public void setCustomerName(String customerName) {\r\n        this.customerName = customerName;\r\n    }\r\n\r\n    public String getCustomerType() { return customerType; }\r\n\r\n    public void setCustomerType(String customerType) { this.customerType = customerType; }\r\n\r\n    public InsuranceID getInsuranceCardID() {\r\n        return insuranceCardID;\r\n    }\r\n\r\n    public void setInsuranceCardID(InsuranceID insuranceCardID) {\r\n        this.insuranceCardID = insuranceCardID;\r\n    }\r\n\r\n    public List<Claims> getClaims() {\r\n        return claims;\r\n    }\r\n\r\n    public void setClaims(List<Claims> claims) {\r\n        this.claims = claims;\r\n    }\r\n\r\n    /*public void displayCustomerOne(Customer customer) {\r\n        System.out.println(\"Name: \" + customerName);\r\n        System.out.println(\"CustomerID: \" + customerId + \"        Customer Type: \" + getCustomerType());\r\n        if (customer instanceof PolicyHolder policyHolder) {\r\n            policyHolder.display();\r\n        }\r\n        else {\r\n            DependentCustomer dependentCustomer = (DependentCustomer) customer;\r\n            dependentCustomer.display();\r\n        }\r\n        System.out.println(\"----------------------------------------\");\r\n        System.out.println(\"Insurance Card:\");\r\n        insuranceCardID.display();\r\n        System.out.println(\"----------------------------------------\");\r\n        *//* System.out.println(\"Card Number: \" + insuranceCardID.getCardNumber());\r\n        System.out.println(\"Policy Owner: \" + insuranceCardID.getPolicyOwner().getName());\r\n        System.out.println(\"Expiration Date: \" + insuranceCardID.getExpDate());*//*\r\n        System.out.println(\"Claim List: \");\r\n        for (Claims claim : claims) {\r\n            ClaimsView.displayClaim(claim);\r\n        }\r\n    }*/\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Customer/Customer.java b/src/Code/Customer/Customer.java
+--- a/src/Code/Customer/Customer.java	
++++ b/src/Code/Customer/Customer.java	
+@@ -56,6 +56,15 @@
+         this.claims = claims;
+     }
+ 
++    @Override
++    public String toString() {
++        return "Customer{" +
++                "customerId='" + customerId + '\'' +
++                ", customerName='" + customerName + '\'' +
++                ", customerType='" + customerType + '\'' +
++                ", insuranceID=" + insuranceCardID +
++                '}';
++    }
+     /*public void displayCustomerOne(Customer customer) {
+         System.out.println("Name: " + customerName);
+         System.out.println("CustomerID: " + customerId + "        Customer Type: " + getCustomerType());
+Index: src/Code/Main/ProgramMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Main;\r\n\r\nimport Code.Functions.ClaimMenu;\r\n\r\npublic class ProgramMain {\r\n    public static void main(String[] args) {\r\n        ClaimMenu claimMenu = new ClaimMenu();\r\n        claimMenu.displayMenu();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Main/ProgramMain.java b/src/Code/Main/ProgramMain.java
+--- a/src/Code/Main/ProgramMain.java	
++++ b/src/Code/Main/ProgramMain.java	
+@@ -2,8 +2,11 @@
+ 
+ import Code.Functions.ClaimMenu;
+ 
++import java.io.IOException;
++import java.text.ParseException;
++
+ public class ProgramMain {
+-    public static void main(String[] args) {
++    public static void main(String[] args) throws ParseException, IOException {
+         ClaimMenu claimMenu = new ClaimMenu();
+         claimMenu.displayMenu();
+     }
+Index: src/Code/Customer/PolicyHolder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Customer;\r\n\r\nimport Code.Claims.*;\r\n\r\nimport java.util.List;\r\n\r\npublic class PolicyHolder extends Customer {\r\n    private List<DependentCustomer> dependentCustomers;\r\n\r\n    public PolicyHolder(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {\r\n        super(customerID,customerName, customerType, insuranceID, claims);\r\n        this.dependentCustomers = dependentCustomers;\r\n    }\r\n\r\n    public void setDependentCustomers(List<DependentCustomer> dependentCustomers) {\r\n        this.dependentCustomers = dependentCustomers;\r\n    }\r\n    /*public void addDependentCustomer(DependentCustomer dependentCustomer) {\r\n        dependentCustomers.add(dependentCustomer);\r\n    }*/\r\n\r\n    public List<DependentCustomer> getDependentCustomers() {\r\n        return dependentCustomers;\r\n    }\r\n\r\n    public String getName() {\r\n        return super.getCustomerName();\r\n    }\r\n\r\n    public void display() {\r\n        System.out.println(\"Dependent Customer List:\");\r\n        for (DependentCustomer dependent : dependentCustomers) {\r\n            System.out.print(\"- Name: \" + dependent.getName());\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Customer/PolicyHolder.java b/src/Code/Customer/PolicyHolder.java
+--- a/src/Code/Customer/PolicyHolder.java	
++++ b/src/Code/Customer/PolicyHolder.java	
+@@ -7,8 +7,8 @@
+ public class PolicyHolder extends Customer {
+     private List<DependentCustomer> dependentCustomers;
+ 
+-    public PolicyHolder(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<Claims> claims, List<DependentCustomer> dependentCustomers) {
+-        super(customerID,customerName, customerType, insuranceID, claims);
++    public PolicyHolder(String customerID, String customerName, String customerType, InsuranceID insuranceID, List<DependentCustomer> dependentCustomers) {
++        super(customerID, customerName, customerType, insuranceID, null); // Passing null for claims list
+         this.dependentCustomers = dependentCustomers;
+     }
+ 
+@@ -23,6 +23,7 @@
+         return dependentCustomers;
+     }
+ 
++
+     public String getName() {
+         return super.getCustomerName();
+     }
+@@ -30,7 +31,7 @@
+     public void display() {
+         System.out.println("Dependent Customer List:");
+         for (DependentCustomer dependent : dependentCustomers) {
+-            System.out.print("- Name: " + dependent.getName());
++            System.out.print("- Name: " + dependent.getCustomerName());
+         }
+     }
+ }
+Index: src/Code/CustomerInfos.txt
+===================================================================
+diff --git a/src/Code/CustomerInfos.txt b/src/Code/CustomerInfos.txt
+new file mode 100644
+--- /dev/null	
++++ b/src/Code/CustomerInfos.txt	
+@@ -0,0 +1,3 @@
++c-3456789,Bob Johnson,Dependent,2345678901234567,Jane Smith
++c-1234567,John Doe,Dependent,3456789012345678,Jane Smith
++c-2345678,Jane Smith,Policy Holder,1234567890123456
+Index: src/Code/InsuranceInfos.txt
+===================================================================
+diff --git a/src/Code/InsuranceInfos.txt b/src/Code/InsuranceInfos.txt
+new file mode 100644
+--- /dev/null	
++++ b/src/Code/InsuranceInfos.txt	
+@@ -0,0 +1,3 @@
++3456789012345678,John Doe,PolicyA,2024-12-31
++1234567890123456,Jane Smith,PolicyB,2025-06-30
++2345678901234567,Bob Johnson,PolicyC,2023-10-15
+\ No newline at end of file
+Index: src/Code/ClaimsInfos.txt
+===================================================================
+diff --git a/src/Code/ClaimsInfos.txt b/src/Code/ClaimsInfos.txt
+new file mode 100644
+--- /dev/null	
++++ b/src/Code/ClaimsInfos.txt	
+@@ -0,0 +1,3 @@
++C-000001,John Doe,2024-02-01,2025-05-05,INS-12345678,1,1,1500.0,NEW,BankName1,AccountHolderName1,1234567890
++C-000002,Jane Smith,2023-05-05,2027-05-05,INS-87654321,1,1,2000.0,NEW,BankName2,AccountHolderName2,9876543210
++C-000003,Bob Johnson,2023-10-10,2023-05-06,INS-13579246,2,2,doc4.pdf,3000.0,DONE,BankName3,AccountHolderName3,2468135790
+Index: src/Code/BankInfos.txt
+===================================================================
+diff --git a/src/Code/BankInfos.txt b/src/Code/BankInfos.txt
+new file mode 100644
+--- /dev/null	
++++ b/src/Code/BankInfos.txt	
+@@ -0,0 +1,1 @@
++BankName1,John Doe,1234567890
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"CustomerClaims:jar\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"44c2562a-7f1f-4971-b132-56502519fc16\" name=\"Changes\" comment=\"More controller, prepare to fix Claims class\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Claims/BankingInfo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Claims/BankingInfo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Claims/Claims.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Claims/Claims.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Claims/ClaimsView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/ClaimsView.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/Customer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/Customer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/CustomersView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/CustomersView.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Files/LoadData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Files/LoadData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Files/SaveData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Files/SaveData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/ClaimView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/ClaimView.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/CustomerController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/CustomerController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Functions/CustomerView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Functions/CustomerView.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Customer/InsuranceID.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Main/MainView.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Main/programMain.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Main/ProgramMain.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/META-INF/MANIFEST.MF\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/META-INF/MANIFEST.MF\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2egR7NMvf3wqViNRZdP7HuGRtT0\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.ProgramMain.executor\": \"Run\",\r\n    \"Application.programMain.executor\": \"Run\",\r\n    \"JAR Application.ProgramMain.executor\": \"Run\",\r\n    \"JAR Application.ProgramMainJar.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"ViewUpdate\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java\",\r\n    \"project.structure.last.edited\": \"Artifacts\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"inlay.hints\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\monsi\\IdeaProjects\\CustomerClaims\\src\\Code\\Files\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"ProgramMain\" type=\"JarApplication\">\r\n      <option name=\"JAR_PATH\" value=\"$PROJECT_DIR$/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"C:\\Users\\monsi\\IdeaProjects\\CustomerClaims\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <method v=\"2\">\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"CustomerClaims:jar\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"44c2562a-7f1f-4971-b132-56502519fc16\" name=\"Changes\" comment=\"\" />\r\n      <created>1712324069046</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1712324069046</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Firsy step\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712327249494</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712327249494</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Firsy step\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712333849914</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712333849914</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"New classes for every customer type\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712379010556</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712379010556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Base Manager and claim view\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712424621325</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712424621325</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"More controller, prepare to fix Claims class\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712465812549</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712465812549</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Customer\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Firsy step\" />\r\n    <MESSAGE value=\"New classes for every customer type\" />\r\n    <MESSAGE value=\"Base Manager and claim view\" />\r\n    <MESSAGE value=\"More controller, prepare to fix Claims class\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"More controller, prepare to fix Claims class\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -9,29 +9,34 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="More controller, prepare to fix Claims class">
+-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CustomerClaimsMain.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CustomerClaims_jar2.xml" afterDir="false" />
++    <list default="true" id="44c2562a-7f1f-4971-b132-56502519fc16" name="Changes" comment="Initial Fix for everything, testing preparation">
++      <change afterPath="$PROJECT_DIR$/src/Code/BankInfos.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Code/ClaimsInfos.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Code/CustomerInfos.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Code/InsuranceInfos.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/BankingInfo.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Claims/Claims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Claims/Claims.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Claims/ClaimsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/Customer.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Customer/CustomersView.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/DependentCustomer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/PolicyHolder.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Files/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/LoadData.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Files/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Files/SaveData.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimMenu.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimView.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/ClaimsView.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/CustomerController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/InsuranceID/InsuranceID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Customer/InsuranceID.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Main/MainView.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Main/programMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Functions/CustomerView.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Main/ProgramMain.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Manager/ClaimProcessManagerImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/BankInfo" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/BankInfo" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Claims" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Claims" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Customers" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Customers" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Code/Storage/Insurance" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code/Storage/Insurance" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -68,6 +73,7 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Application.ClaimMenu.executor": "Run",
+     "Application.ProgramMain.executor": "Run",
+     "Application.programMain.executor": "Run",
+     "JAR Application.ProgramMain.executor": "Run",
+@@ -77,7 +83,7 @@
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "git-widget-placeholder": "ViewUpdate",
+     "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/out/artifacts/CustomerClaimsMain/CustomerClaimsMain.jar",
++    "last_opened_file_path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Code",
+     "onboarding.tips.debug.path": "C:/Users/monsi/IdeaProjects/CustomerClaims/src/Main.java",
+     "project.structure.last.edited": "Artifacts",
+     "project.structure.proportion": "0.15",
+@@ -87,7 +93,11 @@
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code" />
+       <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code\Files" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\monsi\IdeaProjects\CustomerClaims\src\Code" />
+     </key>
+   </component>
+   <component name="RunManager">
+@@ -158,12 +168,30 @@
+       <option name="project" value="LOCAL" />
+       <updated>1712465812549</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Initial Fix for everything, testing preparation">
++      <option name="closed" value="true" />
++      <created>1712488025552</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1712488025552</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
++    <option name="OPEN_GENERIC_TABS">
++      <map>
++        <entry key="7c0af0c7-6ceb-49f1-b765-47057b59dd61" value="TOOL_WINDOW" />
++      </map>
++    </option>
+     <option name="TAB_STATES">
+       <map>
++        <entry key="7c0af0c7-6ceb-49f1-b765-47057b59dd61">
++          <value>
++            <State />
++          </value>
++        </entry>
+         <entry key="MAIN">
+           <value>
+             <State>
+@@ -189,6 +217,7 @@
+     <MESSAGE value="New classes for every customer type" />
+     <MESSAGE value="Base Manager and claim view" />
+     <MESSAGE value="More controller, prepare to fix Claims class" />
+-    <option name="LAST_COMMIT_MESSAGE" value="More controller, prepare to fix Claims class" />
++    <MESSAGE value="Initial Fix for everything, testing preparation" />
++    <option name="LAST_COMMIT_MESSAGE" value="Initial Fix for everything, testing preparation" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_21\" default=\"true\" project-jdk-name=\"21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_21_PREVIEW" project-jdk-name="21" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/Code/Claims/BankingInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Claims;\r\n\r\npublic class BankingInfo {\r\n    private String bank;\r\n    private String name;\r\n    private String number;\r\n\r\n    public BankingInfo(String bank, String name, String number) {\r\n        this.bank = bank;\r\n        this.name = name;\r\n        this.number = number;\r\n    }\r\n\r\n    public String getBank() { return bank; }\r\n\r\n    public void setBank(String bank) {\r\n        this.bank = bank;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public String getNumber() {\r\n        return number;\r\n    }\r\n\r\n    public void setNumber(String number) {\r\n        this.number = number;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Claims/BankingInfo.java b/src/Code/Claims/BankingInfo.java
+--- a/src/Code/Claims/BankingInfo.java	
++++ b/src/Code/Claims/BankingInfo.java	
+@@ -32,4 +32,12 @@
+     public void setNumber(String number) {
+         this.number = number;
+     }
++
++    /*public String toString() {
++        return "BankingInfo{" +
++                "bank='" + bank + '\'' +
++                ", name='" + name + '\'' +
++                ", number='" + number + '\'' +
++                '}';
++    }*/
+ }
+Index: src/Code/Claims/Claims.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Claims;\r\n\r\nimport Code.Customer.*;\r\n\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\npublic class Claims {\r\n    private String claimID;\r\n    private Date claimDate;\r\n    private Date examDate;\r\n    private Customer insurancePeople;\r\n    private InsuranceID insuranceID;\r\n    private final int documentNumbers;\r\n    private List<String> documents;\r\n    private double claimAmount;\r\n    private Status status;\r\n    private BankingInfo bankInfo;\r\n\r\n    public Claims(String claimID, Date claimDate, Date examDate, Customer insurancePeople, InsuranceID insuranceID, int documentNumbers, List<String> documents, double claimAmount, Status status, BankingInfo bankInfo) {\r\n        this.claimID = claimID;\r\n        this.claimDate = claimDate;\r\n        this.examDate = examDate;\r\n        this.insurancePeople = insurancePeople;\r\n        this.insuranceID = insuranceID;\r\n        this.documentNumbers = documents.size();\r\n        this.documents = documents;\r\n        this.claimAmount = claimAmount;\r\n        this.status = status;\r\n        this.bankInfo = bankInfo;\r\n    }\r\n\r\n    public String getClaimID() {\r\n        return claimID;\r\n    }\r\n\r\n    public void setClaimID(String claimID) {\r\n        this.claimID = claimID;\r\n    }\r\n\r\n    public Date getClaimDate() {\r\n        return claimDate;\r\n    }\r\n\r\n    public void setClaimDate(Date claimDate) {\r\n        this.claimDate = claimDate;\r\n    }\r\n\r\n    public Date getExamDate() {\r\n        return examDate;\r\n    }\r\n\r\n    public void setExamDate(Date examDate) {\r\n        this.examDate = examDate;\r\n    }\r\n\r\n    public Customer getInsurancePeople() {\r\n        return insurancePeople;\r\n    }\r\n\r\n    public void setInsurancePeople(Customer insurancePeople) {\r\n        this.insurancePeople = insurancePeople;\r\n    }\r\n\r\n    public InsuranceID getInsuranceID() {\r\n        return insuranceID;\r\n    }\r\n\r\n    public void setInsuranceID(InsuranceID insuranceID) {\r\n        this.insuranceID = insuranceID;\r\n    }\r\n    public int getDocumentNumbers() { return documentNumbers; }\r\n    public void setDocumentNumbers() {}\r\n    public List<String> getDocuments() {\r\n        return documents;\r\n    }\r\n\r\n    public void setDocuments(List<String> documents) {\r\n        this.documents = documents;\r\n    }\r\n\r\n    public double getClaimAmount() {\r\n        return claimAmount;\r\n    }\r\n\r\n    public void setClaimAmount(double claimAmount) {\r\n        this.claimAmount = claimAmount;\r\n    }\r\n\r\n    public Status getStatus() { return status; }\r\n\r\n    public void setStatus(Status status) {\r\n        this.status = status;\r\n    }\r\n\r\n    public BankingInfo getBankInfo() {\r\n        return bankInfo;\r\n    }\r\n\r\n    public void setBankInfo(BankingInfo bankInfo) {\r\n        this.bankInfo = bankInfo;\r\n    }\r\n\r\n\r\n\r\n    /*public void display() {\r\n        System.out.println(\"ClaimID: \" + claimID + \"            Claim Date: \" + claimDate);\r\n        System.out.println(\"-------------\");\r\n        System.out.println(\"Insured People: \" + insurancePeople + \"            Exam Date: \" + examDate);\r\n        System.out.println(\"Card Number: \" + insuranceID.getCardNumber());\r\n        System.out.println(\"List of Documents:: \");\r\n        for (String document : documents) {\r\n            System.out.println(\"- \" + document);\r\n        }\r\n        System.out.println(\"-------------\");\r\n        System.out.print(\"Claim Amount: \" + claimAmount);\r\n        System.out.println(\"Status: \" + status);\r\n        System.out.println(\"Receiver Banking Info:         Bank: \" + bankInfo.getBank() + \"           Name: \" + bankInfo.getName());\r\n        System.out.println(\"                                  Number: \" + bankInfo.getNumber());\r\n        System.out.println(\"--------------------------\");\r\n    }*/\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Code/Claims/Claims.java b/src/Code/Claims/Claims.java
+--- a/src/Code/Claims/Claims.java	
++++ b/src/Code/Claims/Claims.java	
+@@ -42,9 +42,7 @@
+         return claimDate;
+     }
+ 
+-    public void setClaimDate(Date claimDate) {
+-        this.claimDate = claimDate;
+-    }
++    public void setClaimDate(Date claimDate) { this.claimDate = claimDate; }
+ 
+     public Date getExamDate() {
+         return examDate;
+@@ -101,7 +99,21 @@
+         this.bankInfo = bankInfo;
+     }
+ 
+-
++    @Override
++    public String toString() {
++        return "Claims{" +
++                "claimID='" + claimID + '\'' +
++                ", claimDate=" + claimDate +
++                ", examDate=" + examDate +
++                ", insurancePeople=" + insurancePeople +
++                ", insuranceID=" + insurancePeople.getInsuranceCardID() +
++                ", documentNumbers=" + documentNumbers +
++                ", documents=" + documents +
++                ", claimAmount=" + claimAmount +
++                ", status=" + status +
++                ", bankInfo=" + bankInfo +
++                '}';
++    }
+ 
+     /*public void display() {
+         System.out.println("ClaimID: " + claimID + "            Claim Date: " + claimDate);
+Index: src/Code/Files/SaveData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Files;\r\n\r\nimport Code.Claims.*;\r\nimport Code.Customer.*;\r\n\r\nimport java.io.*;\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.List;\r\nimport java.util.Set;\r\n\r\npublic class SaveData {\r\n    public static void saveCustomers(Set<Customer> customers, String filePath) {\r\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {\r\n            for (Customer customer : customers) {\r\n                writer.write(customerToString(customer));\r\n                writer.newLine();\r\n            }\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    private static String customerToString(Customer customer) {\r\n        return String.format(\"%s,%s,%s,%s,%s\",\r\n                customer.getCustomerId(),\r\n                customer.getCustomerName(),\r\n                customer.getInsuranceCardID().getCardNumber(),\r\n                customer.getInsuranceCardID().getPolicyOwner(),\r\n                customer.getClaims().size());\r\n    }\r\n\r\n    public static void saveClaimsData(List<Claims> claims, String filename) {\r\n        try (FileOutputStream fos = new FileOutputStream(filename);\r\n             ObjectOutputStream oos = new ObjectOutputStream(fos)) {\r\n            oos.writeObject(claims);\r\n            System.out.println(\"Data saved successfully.\");\r\n        } catch (IOException e) {\r\n            System.out.println(\"Error saving data: \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    public static void saveInsuranceIDData(List<InsuranceID> insuranceIDs, String filePath) {\r\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {\r\n            for (InsuranceID insuranceID : insuranceIDs) {\r\n                writer.write(insuranceIDToString(insuranceID));\r\n                writer.newLine();\r\n            }\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    private static String insuranceIDToString(InsuranceID insuranceID) {\r\n        SimpleDateFormat dateFormat = new SimpleDateFormat(\"MM/dd/yyyy\");\r\n        return String.format(\"%s,%s,%s,%s\",\r\n                insuranceID.getCardNumber(),\r\n                insuranceID.getCardHolder().getCustomerId(),\r\n                insuranceID.getPolicyOwner(),\r\n                dateFormat.format(insuranceID.getExpDate()));\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Files/SaveData.java b/src/Code/Files/SaveData.java
+--- a/src/Code/Files/SaveData.java	
++++ b/src/Code/Files/SaveData.java	
+@@ -5,57 +5,63 @@
+ 
+ import java.io.*;
+ import java.text.SimpleDateFormat;
+-import java.util.List;
+-import java.util.Set;
++import java.util.*;
+ 
+ public class SaveData {
+-    public static void saveCustomers(Set<Customer> customers, String filePath) {
+-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+-            for (Customer customer : customers) {
+-                writer.write(customerToString(customer));
+-                writer.newLine();
++    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
++
++    public void saveCustomers(Set<Customer> customers, String customerFilePath) {
++        try {
++            createFileIfNotExists(customerFilePath);
++            try (BufferedWriter writer = new BufferedWriter(new FileWriter(customerFilePath))) {
++                for (Customer customer : customers) {
++                    writer.write(customer.getCustomerId() + "," + customer.getCustomerName() + "," + customer.getCustomerType() + "," + customer.getInsuranceCardID().toStringID() + "\n");
++                }
+             }
++            System.out.println("Customers saved successfully.");
+         } catch (IOException e) {
+-            e.printStackTrace();
++            System.out.println("Error saving customers to file: " + e.getMessage());
+         }
+     }
+-
+-    private static String customerToString(Customer customer) {
+-        return String.format("%s,%s,%s,%s,%s",
+-                customer.getCustomerId(),
+-                customer.getCustomerName(),
+-                customer.getInsuranceCardID().getCardNumber(),
+-                customer.getInsuranceCardID().getPolicyOwner(),
+-                customer.getClaims().size());
+-    }
+ 
+-    public static void saveClaimsData(List<Claims> claims, String filename) {
+-        try (FileOutputStream fos = new FileOutputStream(filename);
+-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+-            oos.writeObject(claims);
+-            System.out.println("Data saved successfully.");
+-        } catch (IOException e) {
+-            System.out.println("Error saving data: " + e.getMessage());
+-        }
+-    }
+-
+-    public static void saveInsuranceIDData(List<InsuranceID> insuranceIDs, String filePath) {
+-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+-            for (InsuranceID insuranceID : insuranceIDs) {
+-                writer.write(insuranceIDToString(insuranceID));
+-                writer.newLine();
++    public void saveClaims(Set<Claims> claims, String claimsFilePath) {
++        try {
++            createFileIfNotExists(claimsFilePath);
++            try (BufferedWriter writer = new BufferedWriter(new FileWriter(claimsFilePath))) {
++                for (Claims claim : claims) {
++                    String line = claim.getClaimID() + "," +
++                            claim.getInsurancePeople().getCustomerName() + "," +
++                            dateFormat.format(claim.getClaimDate()) + "," +
++                            dateFormat.format(claim.getExamDate()) + "," +
++                            claim.getInsuranceID().getCardNumber() + "," +
++                            claim.getDocumentNumbers() + "," +
++                            String.join(",", claim.getDocuments()) + "," +
++                            claim.getClaimAmount() + "," +
++                            claim.getStatus() + "," +
++                            claim.getBankInfo().getBank() + "," +
++                            claim.getBankInfo().getName() + "," +
++                            claim.getBankInfo().getNumber();
++                    writer.write(line);
++                    writer.newLine();
++                }
+             }
++            System.out.println("Claims saved successfully.");
+         } catch (IOException e) {
+-            e.printStackTrace();
++            System.out.println("Error saving claims to file: " + e.getMessage());
+         }
+     }
+ 
+-    private static String insuranceIDToString(InsuranceID insuranceID) {
+-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+-        return String.format("%s,%s,%s,%s",
+-                insuranceID.getCardNumber(),
+-                insuranceID.getCardHolder().getCustomerId(),
+-                insuranceID.getPolicyOwner(),
+-                dateFormat.format(insuranceID.getExpDate()));
++    // Other methods for saving data
++
++    private void createFileIfNotExists(String filePath) throws IOException {
++        File file = new File(filePath);
++        if (!file.exists()) {
++            boolean created = file.createNewFile();
++            if (created) {
++                System.out.println("File created successfully: " + filePath);
++            } else {
++                System.out.println("Failed to create the file.");
++            }
++        }
+     }
+ }
+\ No newline at end of file
+Index: src/Code/Files/LoadData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Files;\r\n\r\nimport Code.Claims.*;\r\nimport Code.Customer.*;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\nimport java.text.ParseException;\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.ArrayList;\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\npublic class LoadData {\r\n\r\n    public static void main(String[] args) {\r\n        String claimsFilePath = \"Storage/Claims.txt\";\r\n        String customerFilePath = \"Storage/Customer.txt\";\r\n        String insuranceFilePath = \"Storage/InsuranceID.txt\";\r\n        String bankInfoFilePath = \"Storage/bankInfo.txt\";\r\n        List<Claims> claimsList = loadClaims(claimsFilePath, customerFilePath, insuranceFilePath, bankInfoFilePath);\r\n        // Use the loaded claims data...\r\n    }\r\n\r\n    public static List<Claims> loadClaims(String claimsFilePath, String customerFilePath, String insuranceFilePath, String bankInfoFilePath) {\r\n        List<Claims> claimsList = new ArrayList<>();\r\n\r\n        List<Customer> customers = loadCustomers(customerFilePath);\r\n        List<InsuranceID> insuranceIDs = loadInsuranceIDs(insuranceFilePath);\r\n        List<BankingInfo> bankingInfos = loadBankInfo(bankInfoFilePath);\r\n\r\n        try (BufferedReader reader = new BufferedReader(new FileReader(claimsFilePath))) {\r\n            String line;\r\n            while ((line = reader.readLine()) != null) {\r\n                String[] data = line.split(\",\");\r\n                String claimID = data[0];\r\n                SimpleDateFormat dateFormat = new SimpleDateFormat(\"MM/dd/yyyy\");\r\n                Date claimDate = dateFormat.parse(data[1]);\r\n                Date examDate = dateFormat.parse(data[2]);\r\n                String customerName = data[3];\r\n                int documentNumbers = Integer.parseInt(data[4]);\r\n                List<String> documents = new ArrayList<>();\r\n                for (int i = 0; i < documentNumbers; i++) {\r\n                    documents.add(data[5 + i]);\r\n                }\r\n                double claimAmount = Double.parseDouble(data[5 + documentNumbers]);\r\n                Status status = Status.valueOf(data[6 + documentNumbers]);\r\n                String bankName = data[7 + documentNumbers];\r\n                String accountHolderName = data[8 + documentNumbers];\r\n                String accountNumber = data[9 + documentNumbers];\r\n\r\n                Customer customer = findCustomerByName(customerName, customers);\r\n                if (customer == null) {\r\n                    continue;\r\n                }\r\n\r\n                InsuranceID insuranceID = findInsuranceByID(customer, insuranceIDs);\r\n                if (insuranceID == null) {\r\n                    continue;\r\n                }\r\n\r\n                BankingInfo bankInfo = findBankInfoByName(bankName, bankingInfos);\r\n                if (bankInfo == null) {\r\n                    continue;\r\n                }\r\n\r\n                Claims claim = new Claims(claimID, claimDate, examDate, customer, insuranceID, documentNumbers, documents, claimAmount, status, bankInfo);\r\n                claimsList.add(claim);\r\n            }\r\n        } catch (IOException | ParseException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        return claimsList;\r\n    }\r\n\r\n    private static List<Customer> loadCustomers(String customerFilePath) {\r\n        List<Customer> customers = new ArrayList<>();\r\n        // Implement loading customers from file\r\n        return customers;\r\n    }\r\n\r\n    private static List<InsuranceID> loadInsuranceIDs(String insuranceFilePath) {\r\n        List<InsuranceID> insuranceIDs = new ArrayList<>();\r\n        // Implement loading insurance IDs from file\r\n        return insuranceIDs;\r\n    }\r\n\r\n    private static List<BankingInfo> loadBankInfo(String bankInfoFilePath) {\r\n        List<BankingInfo> bankingInfos = new ArrayList<>();\r\n        // Implement loading bank info from file\r\n        return bankingInfos;\r\n    }\r\n\r\n    private static Customer findCustomerByName(String customerName, List<Customer> customers) {\r\n        for (Customer customer : customers) {\r\n            if (customer.getCustomerName().equals(customerName)) {\r\n                return customer;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    private static InsuranceID findInsuranceByID(Customer customer, List<InsuranceID> insuranceIDs) {\r\n        for (InsuranceID insuranceID : insuranceIDs) {\r\n            if (insuranceID.getCardHolder().equals(customer)) {\r\n                return insuranceID;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    private static BankingInfo findBankInfoByName(String bankName, List<BankingInfo> bankingInfos) {\r\n        for (BankingInfo bankInfo : bankingInfos) {\r\n            if (bankInfo.getBank().equals(bankName)) {\r\n                return bankInfo;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Files/LoadData.java b/src/Code/Files/LoadData.java
+--- a/src/Code/Files/LoadData.java	
++++ b/src/Code/Files/LoadData.java	
+@@ -2,98 +2,97 @@
+ 
+ import Code.Claims.*;
+ import Code.Customer.*;
+-
+-import java.io.BufferedReader;
+-import java.io.FileReader;
+-import java.io.IOException;
++import java.io.*;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+-import java.util.ArrayList;
+-import java.util.Date;
+-import java.util.List;
++import java.util.*;
+ 
+ public class LoadData {
++    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+ 
+-    public static void main(String[] args) {
+-        String claimsFilePath = "Storage/Claims.txt";
+-        String customerFilePath = "Storage/Customer.txt";
+-        String insuranceFilePath = "Storage/InsuranceID.txt";
+-        String bankInfoFilePath = "Storage/bankInfo.txt";
+-        List<Claims> claimsList = loadClaims(claimsFilePath, customerFilePath, insuranceFilePath, bankInfoFilePath);
+-        // Use the loaded claims data...
+-    }
++    public List<Customer> loadCustomers(String customerFilePath, String insuranceFilePath) throws IOException {
++        List<Customer> customers = new ArrayList<>();
++        List<InsuranceID> insuranceIDs = loadInsuranceIDs(insuranceFilePath, customers);
++        try (BufferedReader reader = new BufferedReader(new FileReader(customerFilePath))) {
++            String line;
++            while ((line = reader.readLine()) != null) {
++                String[] parts = line.split(",");
++                String customerId = parts[0].trim();
++                String customerName = parts[1].trim();
++                String customerType = parts[2].trim();
++                String insuranceID = parts[3].trim();
++                InsuranceID insuranceId = findInsuranceByID(insuranceIDs, insuranceID);
+ 
+-    public static List<Claims> loadClaims(String claimsFilePath, String customerFilePath, String insuranceFilePath, String bankInfoFilePath) {
+-        List<Claims> claimsList = new ArrayList<>();
+-
+-        List<Customer> customers = loadCustomers(customerFilePath);
+-        List<InsuranceID> insuranceIDs = loadInsuranceIDs(insuranceFilePath);
+-        List<BankingInfo> bankingInfos = loadBankInfo(bankInfoFilePath);
++                if (customerType.equals("Policy Holder")) {
++                    List<DependentCustomer> dependentCustomers = loadDependentCustomers(customers, customerName);
++                    customers.add(new PolicyHolder(customerId, customerName, customerType, insuranceId, dependentCustomers));
++                } else {
++                    PolicyHolder holder = findPolicyHolderByDependentId(customerId, customers);
++                    customers.add(new DependentCustomer(customerId, customerName, customerType, insuranceId, holder));
++                }
++            }
++        }
++        return customers;
++    }
+ 
++    public List<Claims> loadClaims(String claimsFilePath, List<Customer> customers) throws IOException, ParseException {
++        List<Claims> claims = new ArrayList<>();
+         try (BufferedReader reader = new BufferedReader(new FileReader(claimsFilePath))) {
+             String line;
+             while ((line = reader.readLine()) != null) {
+-                String[] data = line.split(",");
+-                String claimID = data[0];
+-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+-                Date claimDate = dateFormat.parse(data[1]);
+-                Date examDate = dateFormat.parse(data[2]);
+-                String customerName = data[3];
+-                int documentNumbers = Integer.parseInt(data[4]);
+-                List<String> documents = new ArrayList<>();
+-                for (int i = 0; i < documentNumbers; i++) {
+-                    documents.add(data[5 + i]);
+-                }
+-                double claimAmount = Double.parseDouble(data[5 + documentNumbers]);
+-                Status status = Status.valueOf(data[6 + documentNumbers]);
+-                String bankName = data[7 + documentNumbers];
+-                String accountHolderName = data[8 + documentNumbers];
+-                String accountNumber = data[9 + documentNumbers];
+-
+-                Customer customer = findCustomerByName(customerName, customers);
++                String[] parts = line.split(",");
++                String claimID = parts[0].trim();
++                String customerName = parts[1].trim();
++                Customer customer = findCustomerByName(customers, customerName);
+                 if (customer == null) {
+-                    continue;
+-                }
+-
+-                InsuranceID insuranceID = findInsuranceByID(customer, insuranceIDs);
+-                if (insuranceID == null) {
+-                    continue;
+-                }
+-
+-                BankingInfo bankInfo = findBankInfoByName(bankName, bankingInfos);
+-                if (bankInfo == null) {
++                    System.out.println("Customer not found for claim ID: " + claimID);
+                     continue;
+                 }
+-
++                Date claimDate = dateFormat.parse(parts[2].trim());
++                Date examDate = dateFormat.parse(parts[3].trim());
++                InsuranceID insuranceID = new InsuranceID(parts[4].trim(), customer, customer.getInsuranceCardID().getPolicyOwner(), customer.getInsuranceCardID().getExpDate());
++                int documentNumbers = Integer.parseInt(parts[5].trim());
++                List<String> documents = new ArrayList<>(Arrays.asList(parts).subList(6, documentNumbers + 6));
++                double claimAmount = Double.parseDouble(parts[6 + documentNumbers].trim());
++                Status status = Status.valueOf(parts[7 + documentNumbers].trim());
++                BankingInfo bankInfo = new BankingInfo(parts[8 + documentNumbers].trim(), parts[9 + documentNumbers].trim(), parts[10 + documentNumbers].trim());
+                 Claims claim = new Claims(claimID, claimDate, examDate, customer, insuranceID, documentNumbers, documents, claimAmount, status, bankInfo);
+-                claimsList.add(claim);
++                claims.add(claim);
+             }
+-        } catch (IOException | ParseException e) {
+-            e.printStackTrace();
+         }
+-
+-        return claimsList;
++        return claims;
+     }
+ 
+-    private static List<Customer> loadCustomers(String customerFilePath) {
+-        List<Customer> customers = new ArrayList<>();
+-        // Implement loading customers from file
+-        return customers;
+-    }
+-
+-    private static List<InsuranceID> loadInsuranceIDs(String insuranceFilePath) {
++    private List<InsuranceID> loadInsuranceIDs(String insuranceFilePath, List<Customer> customers) throws IOException {
+         List<InsuranceID> insuranceIDs = new ArrayList<>();
+-        // Implement loading insurance IDs from file
++        try (BufferedReader reader = new BufferedReader(new FileReader(insuranceFilePath))) {
++            String line;
++            while ((line = reader.readLine()) != null) {
++                String[] parts = line.split(",");
++                String cardNumber = parts[0].trim();
++                String cardHolder = parts[1].trim();
++                Customer customer = findCustomerByName(customers, cardHolder);
++                String policyOwner = parts[2].trim();
++                Date expDate = dateFormat.parse(parts[3].trim());
++                InsuranceID insuranceID = new InsuranceID(cardNumber, customer, policyOwner , expDate);
++                insuranceIDs.add(insuranceID);
++            }
++        } catch (ParseException e) {
++            throw new RuntimeException(e);
++        }
+         return insuranceIDs;
+     }
+ 
+-    private static List<BankingInfo> loadBankInfo(String bankInfoFilePath) {
+-        List<BankingInfo> bankingInfos = new ArrayList<>();
+-        // Implement loading bank info from file
+-        return bankingInfos;
++    private InsuranceID findInsuranceByID(List<InsuranceID> insuranceIDs, String cardId) {
++        for (InsuranceID insuranceID : insuranceIDs) {
++            if (insuranceID.getCardNumber().equals(cardId)) {
++                return insuranceID;
++            }
++        }
++        return null;
+     }
+ 
+-    private static Customer findCustomerByName(String customerName, List<Customer> customers) {
++    private Customer findCustomerByName(List<Customer> customers, String customerName) {
+         for (Customer customer : customers) {
+             if (customer.getCustomerName().equals(customerName)) {
+                 return customer;
+@@ -102,21 +101,53 @@
+         return null;
+     }
+ 
+-    private static InsuranceID findInsuranceByID(Customer customer, List<InsuranceID> insuranceIDs) {
+-        for (InsuranceID insuranceID : insuranceIDs) {
+-            if (insuranceID.getCardHolder().equals(customer)) {
+-                return insuranceID;
+-            }
+-        }
+-        return null;
+-    }
+-
+-    private static BankingInfo findBankInfoByName(String bankName, List<BankingInfo> bankingInfos) {
+-        for (BankingInfo bankInfo : bankingInfos) {
+-            if (bankInfo.getBank().equals(bankName)) {
+-                return bankInfo;
++    private List<DependentCustomer> loadDependentCustomers(List<Customer> customers, String policyHolderName) {
++        List<DependentCustomer> dependentCustomers = new ArrayList<>();
++        for (Customer customer : customers) {
++            if (customer.getCustomerType().equals("Dependent")) {
++                DependentCustomer dependentCustomer = (DependentCustomer) customer;
++                if (dependentCustomer.getHolderName().equals(policyHolderName)) {
++                    dependentCustomers.add(dependentCustomer);
++                }
++            }
++        }
++        return dependentCustomers;
++    }
++
++    private PolicyHolder findPolicyHolderByDependentId(String dependentId, List<Customer> customers) {
++        for (Customer customer : customers) {
++            if (customer.getCustomerType().equals("Policy Holder")) {
++                PolicyHolder policyHolder = (PolicyHolder) customer;
++                for (DependentCustomer dependent : policyHolder.getDependentCustomers()) {
++                    if (dependent.getCustomerId().equals(dependentId)) {
++                        return policyHolder;
++                    }
++                }
+             }
+         }
+         return null;
+     }
++
++    public List<BankingInfo> loadBankInfo(String bankInfoFilePath) throws IOException {
++        List<BankingInfo> bankInfoList = new ArrayList<>();
++        try (BufferedReader reader = new BufferedReader(new FileReader(bankInfoFilePath))) {
++            String line;
++            while ((line = reader.readLine()) != null) {
++                String[] parts = line.split(",");
++                if (parts.length >= 3) {
++                    String bank = parts[0].trim();
++                    String name = parts[1].trim();
++                    String number = parts[2].trim();
++                    BankingInfo bankingInfo = new BankingInfo(bank, name, number);
++                    bankInfoList.add(bankingInfo);
++                } else {
++                    System.out.println("Invalid format in banking info file: " + line);
++                }
++            }
++        } catch (IOException e) {
++            System.out.println("An error occurred while loading banking info: " + e.getMessage());
++            throw e;
++        }
++        return bankInfoList;
++    }
+ }
+\ No newline at end of file
+Index: src/Code/Manager/ClaimProcessManagerImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Manager;\r\n\r\nimport Code.Claims.Claims;\r\nimport Code.Functions.ClaimController;\r\n\r\nimport java.util.Set;\r\n\r\npublic class ClaimProcessManagerImpl implements ClaimProcessManager {\r\n    private ClaimController claimController;\r\n\r\n    public ClaimProcessManagerImpl() {\r\n        this.claimController = new ClaimController();\r\n    }\r\n\r\n    @Override\r\n    public void addClaim(Claims claim) {\r\n        claimController.addClaim(claim);\r\n    }\r\n\r\n    @Override\r\n    public void updateClaim(Claims updatedClaim) {\r\n        claimController.updateClaim(updatedClaim);\r\n    }\r\n\r\n    @Override\r\n    public void deleteClaim(String claimId) {\r\n        claimController.deleteClaim(claimId);\r\n    }\r\n\r\n    @Override\r\n    public Claims getOneClaim(String claimId) {\r\n        return claimController.getClaimById(claimId);\r\n    }\r\n\r\n    @Override\r\n    public Set<Claims> getAllClaim() {\r\n        return claimController.getAllClaims();\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Manager/ClaimProcessManagerImpl.java b/src/Code/Manager/ClaimProcessManagerImpl.java
+--- a/src/Code/Manager/ClaimProcessManagerImpl.java	
++++ b/src/Code/Manager/ClaimProcessManagerImpl.java	
+@@ -1,30 +1,61 @@
+ package Code.Manager;
+ 
+-import Code.Claims.Claims;
++import Code.Claims.*;
++import Code.Customer.Customer;
+ import Code.Functions.ClaimController;
++import Code.Functions.CustomerController;
+ 
+-import java.util.Set;
++import java.util.*;
+ 
+ public class ClaimProcessManagerImpl implements ClaimProcessManager {
+     private ClaimController claimController;
++    private CustomerController customerController;
+ 
+     public ClaimProcessManagerImpl() {
+         this.claimController = new ClaimController();
++        this.customerController = new CustomerController();
+     }
+ 
+     @Override
+     public void addClaim(Claims claim) {
+         claimController.addClaim(claim);
++        System.out.println("Successfully add claim.");
++        System.out.println("--------------------------------------------------------------------");
+     }
+ 
+     @Override
+-    public void updateClaim(Claims updatedClaim) {
+-        claimController.updateClaim(updatedClaim);
++    public void updateClaim(Claims claim) {
++        Claims existingClaim = claimController.getClaimById(claim.getClaimID());
++        if (existingClaim != null) {
++            // Update the existing claim with the new details
++            existingClaim.setClaimDate(claim.getClaimDate());
++            existingClaim.setExamDate(claim.getExamDate());
++            existingClaim.setInsurancePeople(claim.getInsurancePeople());
++            existingClaim.setInsuranceID(claim.getInsuranceID());
++            existingClaim.setDocuments(claim.getDocuments());
++            existingClaim.setClaimAmount(claim.getClaimAmount());
++            existingClaim.setStatus(claim.getStatus());
++            existingClaim.setBankInfo(claim.getBankInfo());
++            // Call the update method of the claim controller
++            claimController.updateClaim(existingClaim);
++        } else {
++            System.out.println("Claim with ID " + claim.getClaimID() + " not found. Cannot update.");
++            System.out.println("--------------------------------------------------------------------");
++        }
+     }
+ 
+     @Override
+     public void deleteClaim(String claimId) {
+-        claimController.deleteClaim(claimId);
++        Claims claimToDelete = claimController.getClaimById(claimId);
++        if (claimToDelete != null) {
++            claimController.deleteClaim(claimId);
++            System.out.println("Claim with ID " + claimId + " deleted successfully.");
++            System.out.println("--------------------------------------------------------------------");
++
++        } else {
++            System.out.println("Claim with ID " + claimId + " not found. Cannot delete.");
++            System.out.println("--------------------------------------------------------------------");
++        }
+     }
+ 
+     @Override
+@@ -34,6 +65,26 @@
+ 
+     @Override
+     public Set<Claims> getAllClaim() {
+-        return claimController.getAllClaims();
++        return claimController.getClaims();
++    }
++
++    // Additional methods for handling customer-related operations
++
++    public void setCustomers(Set<Customer> customers) {
++        customerController.setCustomers(customers);
++    }
++
++    public void setCustomers(List<Customer> customers) {
++        Set<Customer> customerSet = new HashSet<>(customers);
++        customerController.setCustomers(customerSet);
++    }
++
++    public void setClaims(List<Claims> claims) {
++        Set<Claims> claimsSet = new HashSet<>(claims);
++        claimController.setClaims(claimsSet);
++    }
++
++    public Set<Customer> getAllCustomers() {
++        return customerController.getCustomers();
+     }
+ }
+\ No newline at end of file
+Index: src/Code/Functions/ClaimController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Functions;\r\n\r\nimport Code.Claims.*;\r\n\r\nimport java.util.HashSet;\r\nimport java.util.Set;\r\n\r\npublic class ClaimController {\r\n    private Set<Claims> claims;\r\n\r\n    public ClaimController() {\r\n        this.claims = new HashSet<>();\r\n    }\r\n\r\n    public void addClaim(Claims claim) {\r\n        claims.add(claim);\r\n    }\r\n\r\n    public boolean updateClaim(Claims updatedClaim) {\r\n        for (Claims claim : claims) {\r\n            if (claim.getClaimID().equals(updatedClaim.getClaimID())) {\r\n                // Update the claim\r\n                claim.setClaimDate(updatedClaim.getClaimDate());\r\n                claim.setInsurancePeople(updatedClaim.getInsurancePeople());\r\n                // Update other claim attributes as needed\r\n                return true; // Claim updated successfully\r\n            }\r\n        }\r\n        return false; // Claim not found, update failed\r\n    }\r\n\r\n    public boolean deleteClaim(String id) {\r\n        for (Claims claim : claims) {\r\n            if (claim.getClaimID().equals(id)) {\r\n                claims.remove(claim);\r\n                return true; // Claim deleted successfully\r\n            }\r\n        }\r\n        return false; // Claim not found, delete failed\r\n    }\r\n\r\n    public Claims getClaimById(String id) {\r\n        for (Claims claim : claims) {\r\n            if (claim.getClaimID().equals(id)) {\r\n                return claim; // Return the claim if found\r\n            }\r\n        }\r\n        return null; // Claim not found\r\n    }\r\n\r\n    public Set<Claims> getAllClaims() {\r\n        return claims;\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Functions/ClaimController.java b/src/Code/Functions/ClaimController.java
+--- a/src/Code/Functions/ClaimController.java	
++++ b/src/Code/Functions/ClaimController.java	
+@@ -1,8 +1,9 @@
+ package Code.Functions;
+ 
+-import Code.Claims.*;
++import Code.Claims.Claims;
+ 
+ import java.util.HashSet;
++import java.util.Iterator;
+ import java.util.Set;
+ 
+ public class ClaimController {
+@@ -12,40 +13,58 @@
+         this.claims = new HashSet<>();
+     }
+ 
++    public Set<Claims> getClaims() {
++        return claims;
++    }
++
++    public void setClaims(Set<Claims> claims) {
++        this.claims = claims;
++    }
++
+     public void addClaim(Claims claim) {
+         claims.add(claim);
+     }
+ 
+-    public boolean updateClaim(Claims updatedClaim) {
+-        for (Claims claim : claims) {
++    public void updateClaim(Claims updatedClaim) {
++        boolean claimFound = false;
++        Iterator<Claims> iterator = claims.iterator();
++        while (iterator.hasNext()) {
++            Claims claim = iterator.next();
+             if (claim.getClaimID().equals(updatedClaim.getClaimID())) {
+-                // Update the claim
+-                claim.setClaimDate(updatedClaim.getClaimDate());
+-                claim.setInsurancePeople(updatedClaim.getInsurancePeople());
+-                // Update other claim attributes as needed
+-                return true; // Claim updated successfully
++                iterator.remove();
++                claims.add(updatedClaim);
++                claimFound = true;
++                break;
+             }
+         }
+-        return false; // Claim not found, update failed
++        if (!claimFound) {
++            // Handle case where claim is not found
++        }
+     }
+ 
+-    public boolean deleteClaim(String id) {
++    public void deleteClaim(String claimId) {
++        Claims claimToRemove = null;
+         for (Claims claim : claims) {
+-            if (claim.getClaimID().equals(id)) {
+-                claims.remove(claim);
+-                return true; // Claim deleted successfully
++            if (claim.getClaimID().equals(claimId)) {
++                claimToRemove = claim;
++                break;
+             }
+         }
+-        return false; // Claim not found, delete failed
++        if (claimToRemove != null) {
++            claims.remove(claimToRemove);
++            System.out.println("Successfully deleted claim!");
++        } else {
++            System.out.println("Cannot find a claim with that ID.");
++        }
+     }
+ 
+-    public Claims getClaimById(String id) {
++    public Claims getClaimById(String claimId) {
+         for (Claims claim : claims) {
+-            if (claim.getClaimID().equals(id)) {
+-                return claim; // Return the claim if found
++            if (claim.getClaimID().equals(claimId)) {
++                return claim;
+             }
+         }
+-        return null; // Claim not found
++        return null;
+     }
+ 
+     public Set<Claims> getAllClaims() {
+Index: src/Code/Functions/ClaimMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Functions;\r\n\r\nimport Code.Claims.*;\r\nimport Code.Customer.*;\r\nimport Code.Files.*;\r\n\r\nimport java.io.IOException;\r\nimport java.util.*;\r\n\r\npublic class ClaimMenu {\r\n    private ClaimController claimController;\r\n    private CustomerController customerController;\r\n    private Scanner scanner;\r\n    private LoadData loadData;\r\n    private SaveData saveData;\r\n    private String claimsFilePath = \"Storage/Claims.txt\";\r\n    private String customerFilePath = \"Storage/Customer.txt\";\r\n    private String insuranceFilePath = \"Storage/InsuranceID.txt\";\r\n    private String bankInfoFilePath = \"Storage/bankInfo.txt\";\r\n\r\n    public ClaimMenu() {\r\n        this.claimController = new ClaimController();\r\n        this.customerController = new CustomerController();\r\n        this.scanner = new Scanner(System.in);\r\n        this.saveData = new SaveData();\r\n        this.loadData = new LoadData();\r\n    }\r\n\r\n    public void displayMenu() {\r\n        boolean exit = false;\r\n        while (!exit) {\r\n            System.out.println(\"---- Customer Claim Management System ----\");\r\n            System.out.println(\"1. Add Claim\");\r\n            System.out.println(\"2. Update Claim\");\r\n            System.out.println(\"3. Delete Claim\");\r\n            System.out.println(\"4. View Claim\");\r\n            System.out.println(\"5. View All Claims\");\r\n            System.out.println(\"6. Exit\");\r\n            System.out.print(\"Enter your choice: \");\r\n            int choice = scanner.nextInt();\r\n            scanner.nextLine(); // Consume newline character\r\n\r\n            switch (choice) {\r\n                case 1:\r\n                    addClaim();\r\n                    break;\r\n                case 2:\r\n                    updateClaim();\r\n                    break;\r\n                case 3:\r\n                    deleteClaim();\r\n                    break;\r\n                case 4:\r\n                    viewClaim();\r\n                    break;\r\n                case 5:\r\n                    viewAllClaims();\r\n                    break;\r\n                case 6:\r\n                    exit = true;\r\n                    break;\r\n                default:\r\n                    System.out.println(\"Invalid choice! Please enter a number between 1 and 6.\");\r\n            }\r\n        }\r\n        scanner.close();\r\n    }\r\n\r\n    private void addClaim() {\r\n        System.out.println(\"Enter claim details:\");\r\n        System.out.print(\"Claim ID: \");\r\n        String id = scanner.nextLine();\r\n        System.out.print(\"Customer Name: \");\r\n        String customerName = scanner.nextLine();\r\n\r\n        Customer customer = customerController.getCustomerById(customerName);\r\n        if (customer == null) {\r\n            System.out.println(\"Customer with ID \" + customerName + \" does not exist. Cannot add claim.\");\r\n            return;\r\n        }\r\n        InsuranceID insuranceID = findInsuranceIDByCustomerName(customerName);\r\n        if (insuranceID == null) {\r\n            System.out.println(\"No insurance ID found for customer: \" + customerName);\r\n            return;\r\n        }\r\n\r\n        // Additional inputs for claim details\r\n        System.out.print(\"Claim Date (YYYY-MM-DD): \");\r\n        String claimDateStr = scanner.nextLine();\r\n        long claimDateMillis = Date.parse(claimDateStr); // Parse the input date string to milliseconds\r\n        Date claimDate = new Date(claimDateMillis); // Create a Date object from milliseconds\r\n\r\n        System.out.print(\"Exam Date (YYYY-MM-DD): \");\r\n        String examDateStr = scanner.nextLine();\r\n        long examDateMillis = Date.parse(examDateStr); // Parse the input exam date string to milliseconds\r\n        Date examDate = new Date(examDateMillis); // Create a Date object from milliseconds\r\n\r\n        System.out.print(\"Claim Amount: \");\r\n        double claimAmount = Double.parseDouble(scanner.nextLine());\r\n\r\n        System.out.print(\"Status (Leave empty if NEW): \");\r\n        String status = scanner.nextLine();\r\n        Status statusOut = Status.NEW;\r\n        if (!validateStatus(status)) {\r\n            System.out.println(\"Invalid Status\");\r\n            return;\r\n        } else {\r\n            statusOut = Status.valueOf(status);\r\n        }\r\n        System.out.print(\"Bank Name: \");\r\n        String bankName = scanner.nextLine();\r\n        System.out.print(\"Account Holder Name: \");\r\n        String accountHolderName = scanner.nextLine();\r\n        System.out.print(\"Account Number: \");\r\n        String accountNumber = scanner.nextLine();\r\n        BankingInfo bankInfo = new BankingInfo(bankName, accountHolderName, accountNumber);\r\n\r\n        System.out.print(\"Number of Documents: \");\r\n        int numDocuments = Integer.parseInt(scanner.nextLine());\r\n        List<String> documents = new ArrayList<>();\r\n        for (int i = 0; i < numDocuments; i++) {\r\n            System.out.print(\"Enter Document \" + (i + 1) + \": \");\r\n            String document = scanner.nextLine();\r\n            documents.add(document);\r\n        }\r\n        // Create a new Claim object with the provided details\r\n        Claims newClaim = new Claims(id, claimDate, examDate, customer, insuranceID , numDocuments, documents, claimAmount, statusOut, bankInfo);\r\n        claimController.addClaim(newClaim);\r\n        System.out.println(\"Claim added successfully!\");\r\n    }\r\n\r\n    private void updateClaim() {\r\n        System.out.print(\"Enter claim ID to update: \");\r\n        String id = scanner.nextLine();\r\n        // Implement logic to fetch the claim from storage by its ID\r\n        Claims claimToUpdate = claimController.getClaimById(id);\r\n        if (claimToUpdate != null) {\r\n            // Prompt user to enter updated details for the claim\r\n            System.out.println(\"Enter updated claim details:\");\r\n            // Update claim details here...\r\n\r\n            // Call the updateClaim method of the controller to update the claim\r\n            claimController.updateClaim(claimToUpdate);\r\n            System.out.println(\"Claim updated successfully!\");\r\n        } else {\r\n            System.out.println(\"Claim with ID \" + id + \" not found.\");\r\n        }\r\n    }\r\n\r\n    private void deleteClaim() {\r\n        System.out.print(\"Enter claim ID to delete: \");\r\n        String id = scanner.nextLine();\r\n        // Implement logic to fetch the claim from storage by its ID\r\n        Claims claimToDelete = claimController.getClaimById(id);\r\n        if (claimToDelete != null) {\r\n            // Call the deleteClaim method of the controller to delete the claim\r\n            claimController.deleteClaim(id);\r\n            System.out.println(\"Claim deleted successfully!\");\r\n        } else {\r\n            System.out.println(\"Claim with ID \" + id + \" not found.\");\r\n        }\r\n    }\r\n\r\n    private void viewClaim() {\r\n        System.out.print(\"Enter claim ID to view: \");\r\n        String id = scanner.nextLine();\r\n        // Implement logic to fetch the claim from storage by its ID\r\n        Claims claim = claimController.getClaimById(id);\r\n        if (claim != null) {\r\n            // Call the displayClaim method of the view to display the claim\r\n            ClaimView.displayClaim(claim);\r\n        } else {\r\n            System.out.println(\"Claim with ID \" + id + \" not found.\");\r\n        }\r\n    }\r\n\r\n    private void viewAllClaims() {\r\n        Set<Claims> allClaims = claimController.getAllClaims();\r\n        for (Claims claim : allClaims) {\r\n            // Call the displayClaim method of the view to display each claim\r\n            ClaimView.displayClaim(claim);\r\n        }\r\n    }\r\n\r\n    private boolean validateStatus(String statusInput) {\r\n        for (Status status : Status.values()) {\r\n            if (status.name().equalsIgnoreCase(statusInput)) {\r\n                return true; // Found a matching status\r\n            }\r\n        }\r\n        return false; // No matching status found\r\n    }\r\n\r\n    private InsuranceID findInsuranceIDByCustomerName(String customerName) {\r\n        // Iterate through all customers to find the one with matching name\r\n        for (Customer customer : customerController.getAllCustomers()) {\r\n            if (customer.getCustomerName().equalsIgnoreCase(customerName)) {\r\n                return customer.getInsuranceCardID(); // Return the insurance ID associated with the customer\r\n            }\r\n        }\r\n        return null; // Return null if no matching customer is found\r\n    }\r\n\r\n    private void saveClaimsData(Set<Claims> claimsSet, String filePath) {\r\n        List<Claims> claimsList = new ArrayList<>(claimsSet);\r\n        saveData.saveClaimsData(claimsList, filePath);\r\n    }\r\n\r\n    private Set<Claims> loadClaimsData(String claimsFilePath, String customerFilePath, String insuranceFilePath, String bankInfoFilePath) {\r\n        List<Claims> claimsList = loadData.loadClaims(claimsFilePath, customerFilePath, insuranceFilePath, bankInfoFilePath);\r\n        return new HashSet<>(claimsList);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        ClaimMenu claimMenu = new ClaimMenu();\r\n        claimMenu.displayMenu();\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Functions/ClaimMenu.java b/src/Code/Functions/ClaimMenu.java
+--- a/src/Code/Functions/ClaimMenu.java	
++++ b/src/Code/Functions/ClaimMenu.java	
+@@ -2,31 +2,56 @@
+ 
+ import Code.Claims.*;
+ import Code.Customer.*;
+-import Code.Files.*;
++import Code.Manager.ClaimProcessManagerImpl;
++import Code.Files.LoadData;
++import Code.Files.SaveData;
+ 
+ import java.io.IOException;
++import java.text.ParseException;
++import java.text.SimpleDateFormat;
+ import java.util.*;
+ 
++import static Code.Files.LoadData.*;
++
+ public class ClaimMenu {
+-    private ClaimController claimController;
+-    private CustomerController customerController;
++    private ClaimProcessManagerImpl claimProcessManager;
+     private Scanner scanner;
+     private LoadData loadData;
+     private SaveData saveData;
+-    private String claimsFilePath = "Storage/Claims.txt";
+-    private String customerFilePath = "Storage/Customer.txt";
+-    private String insuranceFilePath = "Storage/InsuranceID.txt";
+-    private String bankInfoFilePath = "Storage/bankInfo.txt";
++    private final String CUSTOMER_FILE_PATH = "src/Code/CustomerInfos.txt";
++    private final String INSURANCE_FILE_PATH = "src/Code/InsuranceInfos.txt";
++    private final String BANK_FILE_PATH = "src/Code/BankInfos.txt";
++    private final String CLAIM_FILE_PATH = "src/Code/ClaimsInfos.txt";
++    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+ 
+     public ClaimMenu() {
+-        this.claimController = new ClaimController();
+-        this.customerController = new CustomerController();
++        this.claimProcessManager = new ClaimProcessManagerImpl();
+         this.scanner = new Scanner(System.in);
+-        this.saveData = new SaveData();
+         this.loadData = new LoadData();
++        this.saveData = new SaveData();
++        loadData();
+     }
+ 
+-    public void displayMenu() {
++    private void loadData() {
++        try {
++            List<Customer> customers = loadData.loadCustomers(CUSTOMER_FILE_PATH, INSURANCE_FILE_PATH);
++            List<Claims> claims = loadData.loadClaims(CLAIM_FILE_PATH, customers);
++            claimProcessManager.setClaims(claims);
++            claimProcessManager.setCustomers(customers);
++        } catch (IOException e) {
++            System.out.println("Error loading data: " + e.getMessage());
++        } catch (ParseException e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    private void saveData() {
++        saveData.saveCustomers(claimProcessManager.getAllCustomers(), CUSTOMER_FILE_PATH);
++        saveData.saveClaims(claimProcessManager.getAllClaim(), CLAIM_FILE_PATH);
++    }
++
++    public void displayMenu() throws ParseException, IOException {
++        List<Customer> customers = loadData.loadCustomers(CUSTOMER_FILE_PATH, INSURANCE_FILE_PATH);
+         boolean exit = false;
+         while (!exit) {
+             System.out.println("---- Customer Claim Management System ----");
+@@ -42,7 +67,7 @@
+ 
+             switch (choice) {
+                 case 1:
+-                    addClaim();
++                    addClaim(customers);
+                     break;
+                 case 2:
+                     updateClaim();
+@@ -54,9 +79,11 @@
+                     viewClaim();
+                     break;
+                 case 5:
++                    System.out.println("--------------------------------------------------------------------");
+                     viewAllClaims();
+                     break;
+                 case 6:
++                    saveData();
+                     exit = true;
+                     break;
+                 default:
+@@ -66,153 +93,256 @@
+         scanner.close();
+     }
+ 
+-    private void addClaim() {
++    private void addClaim(List<Customer> customers) throws ParseException {
++        Scanner scanner = new Scanner(System.in);
+         System.out.println("Enter claim details:");
++
++        // Get input from the user
+         System.out.print("Claim ID: ");
+-        String id = scanner.nextLine();
++        String claimId = scanner.nextLine();
++        System.out.print("Claim Date (yyyy-MM-dd): ");
++        Date claimDate = dateFormat.parse(scanner.nextLine());
++        System.out.print("Exam Date (yyyy-MM-dd): ");
++        Date examDate = dateFormat.parse(scanner.nextLine());
+         System.out.print("Customer Name: ");
+         String customerName = scanner.nextLine();
+-
+-        Customer customer = customerController.getCustomerById(customerName);
++        // Assuming you have a method to find customer by name
++        Customer customer = findCustomerByName(customers, customerName);
+         if (customer == null) {
+-            System.out.println("Customer with ID " + customerName + " does not exist. Cannot add claim.");
++            System.out.println("Customer with name " + customerName + " not found.");
+             return;
+         }
+-        InsuranceID insuranceID = findInsuranceIDByCustomerName(customerName);
+-        if (insuranceID == null) {
+-            System.out.println("No insurance ID found for customer: " + customerName);
+-            return;
+-        }
+-
+-        // Additional inputs for claim details
+-        System.out.print("Claim Date (YYYY-MM-DD): ");
+-        String claimDateStr = scanner.nextLine();
+-        long claimDateMillis = Date.parse(claimDateStr); // Parse the input date string to milliseconds
+-        Date claimDate = new Date(claimDateMillis); // Create a Date object from milliseconds
+-
+-        System.out.print("Exam Date (YYYY-MM-DD): ");
+-        String examDateStr = scanner.nextLine();
+-        long examDateMillis = Date.parse(examDateStr); // Parse the input exam date string to milliseconds
+-        Date examDate = new Date(examDateMillis); // Create a Date object from milliseconds
+ 
++        InsuranceID insuranceID = customer.getInsuranceCardID();
++        System.out.print("Insurance ID: " + insuranceID);
++        System.out.print("Number of documents: ");
++        int numDocuments = scanner.nextInt();
++        scanner.nextLine(); // Consume newline character
++        List<String> documents = new ArrayList<>();
++        for (int i = 0; i < numDocuments; i++) {
++            System.out.print("Document " + (i + 1) + ": ");
++            documents.add(scanner.nextLine());
++        }
+         System.out.print("Claim Amount: ");
+-        double claimAmount = Double.parseDouble(scanner.nextLine());
+-
+-        System.out.print("Status (Leave empty if NEW): ");
+-        String status = scanner.nextLine();
+-        Status statusOut = Status.NEW;
+-        if (!validateStatus(status)) {
+-            System.out.println("Invalid Status");
+-            return;
+-        } else {
+-            statusOut = Status.valueOf(status);
+-        }
+-        System.out.print("Bank Name: ");
++        double claimAmount = scanner.nextDouble();
++        scanner.nextLine(); // Consume newline character
++        System.out.print("Status: ");
++        Status status = Status.valueOf(scanner.nextLine());
++        System.out.print("Bank: ");
++        String bank = scanner.nextLine();
++        System.out.print("Bank Account Holder Name: ");
+         String bankName = scanner.nextLine();
+-        System.out.print("Account Holder Name: ");
+-        String accountHolderName = scanner.nextLine();
+-        System.out.print("Account Number: ");
+-        String accountNumber = scanner.nextLine();
+-        BankingInfo bankInfo = new BankingInfo(bankName, accountHolderName, accountNumber);
++        System.out.print("Bank Account Number: ");
++        String bankNumber = scanner.nextLine();
+ 
+-        System.out.print("Number of Documents: ");
+-        int numDocuments = Integer.parseInt(scanner.nextLine());
+-        List<String> documents = new ArrayList<>();
+-        for (int i = 0; i < numDocuments; i++) {
+-            System.out.print("Enter Document " + (i + 1) + ": ");
+-            String document = scanner.nextLine();
+-            documents.add(document);
+-        }
+-        // Create a new Claim object with the provided details
+-        Claims newClaim = new Claims(id, claimDate, examDate, customer, insuranceID , numDocuments, documents, claimAmount, statusOut, bankInfo);
+-        claimController.addClaim(newClaim);
+-        System.out.println("Claim added successfully!");
++        // Create a new Claims object
++        Claims claim = new Claims(claimId, claimDate, examDate, customer, insuranceID, numDocuments, documents, claimAmount, status, new BankingInfo(bank, bankName, bankNumber));
++
++        // Call claimProcessManager.addClaim(claim) to add the claim
++        claimProcessManager.addClaim(claim);
+     }
+ 
+     private void updateClaim() {
++        System.out.println("--------------------------------------------------------------------");
+         System.out.print("Enter claim ID to update: ");
+-        String id = scanner.nextLine();
+-        // Implement logic to fetch the claim from storage by its ID
+-        Claims claimToUpdate = claimController.getClaimById(id);
+-        if (claimToUpdate != null) {
+-            // Prompt user to enter updated details for the claim
+-            System.out.println("Enter updated claim details:");
+-            // Update claim details here...
+-
+-            // Call the updateClaim method of the controller to update the claim
+-            claimController.updateClaim(claimToUpdate);
+-            System.out.println("Claim updated successfully!");
+-        } else {
+-            System.out.println("Claim with ID " + id + " not found.");
+-        }
++        String claimId = scanner.nextLine();
++        // Add logic to get updated details from user
++        // Then call claimProcessManager.updateClaim(updatedClaim) to update the claim
+     }
+ 
+     private void deleteClaim() {
++        System.out.println("--------------------------------------------------------------------");
+         System.out.print("Enter claim ID to delete: ");
+-        String id = scanner.nextLine();
+-        // Implement logic to fetch the claim from storage by its ID
+-        Claims claimToDelete = claimController.getClaimById(id);
+-        if (claimToDelete != null) {
+-            // Call the deleteClaim method of the controller to delete the claim
+-            claimController.deleteClaim(id);
+-            System.out.println("Claim deleted successfully!");
+-        } else {
+-            System.out.println("Claim with ID " + id + " not found.");
+-        }
++        String claimId = scanner.nextLine();
++        claimProcessManager.deleteClaim(claimId);
+     }
+ 
+     private void viewClaim() {
++        System.out.println("--------------------------------------------------------------------");
+         System.out.print("Enter claim ID to view: ");
+-        String id = scanner.nextLine();
+-        // Implement logic to fetch the claim from storage by its ID
+-        Claims claim = claimController.getClaimById(id);
++        String claimId = scanner.nextLine();
++        Claims claim = claimProcessManager.getOneClaim(claimId);
+         if (claim != null) {
+-            // Call the displayClaim method of the view to display the claim
+-            ClaimView.displayClaim(claim);
++            System.out.println("Claim Details:");
++            System.out.println("Claim ID: " + claim.getClaimID());
++            System.out.println("Claim Date: " + claim.getClaimDate());
++            System.out.println("Exam Date: " + claim.getExamDate());
++            System.out.println("Insurance People: " + claim.getInsurancePeople().getCustomerId());
++            System.out.println("Insurance ID: " + claim.getInsuranceID().getCardNumber());
++            System.out.println("Document Numbers: " + claim.getDocumentNumbers());
++            System.out.println("Documents: " + String.join(", ", claim.getDocuments()));
++            System.out.println("Claim Amount: " + claim.getClaimAmount());
++            System.out.println("Status: " + claim.getStatus());
++            System.out.println("Bank Info: " + claim.getBankInfo().getBank() + ", " + claim.getBankInfo().getName() + ", " + claim.getBankInfo().getNumber());
++            System.out.println("--------------------------------------------------------------------");
+         } else {
+-            System.out.println("Claim with ID " + id + " not found.");
++            System.out.println("Claim not found.");
++            System.out.println("--------------------------------------------------------------------");
+         }
+     }
+ 
+     private void viewAllClaims() {
+-        Set<Claims> allClaims = claimController.getAllClaims();
+-        for (Claims claim : allClaims) {
+-            // Call the displayClaim method of the view to display each claim
+-            ClaimView.displayClaim(claim);
++        System.out.println("--------------------------------------------------------------------");
++        Set<Claims> allClaims = claimProcessManager.getAllClaim();
++        if (allClaims.isEmpty()) {
++            System.out.println("No claims available.");
++            System.out.println("--------------------------------------------------------------------");
++        } else {
++            System.out.println("All Claims:");
++            for (Claims claim : allClaims) {
++                System.out.println("Claim Details:");
++                System.out.println("Claim ID: " + claim.getClaimID());
++                System.out.println("Claim Date: " + claim.getClaimDate());
++                System.out.println("Exam Date: " + claim.getExamDate());
++                System.out.println("Insurance People: " + claim.getInsurancePeople().getCustomerId());
++                System.out.println("Insurance ID: " + claim.getInsuranceID().getCardNumber());
++                System.out.println("Document Numbers: " + claim.getDocumentNumbers());
++                System.out.println("Documents: " + String.join(", ", claim.getDocuments()));
++                System.out.println("Claim Amount: " + claim.getClaimAmount());
++                System.out.println("Status: " + claim.getStatus());
++                System.out.println("Bank Info: " + claim.getBankInfo().getBank() + ", " + claim.getBankInfo().getName() + ", " + claim.getBankInfo().getNumber());
++                System.out.println("--------------------------------------------------------------------");
++            }
+         }
+     }
+ 
+-    private boolean validateStatus(String statusInput) {
+-        for (Status status : Status.values()) {
+-            if (status.name().equalsIgnoreCase(statusInput)) {
+-                return true; // Found a matching status
++    private static InsuranceID findInsuranceByID(List<InsuranceID> insuranceIDs, String customerId) {
++        for (InsuranceID insuranceID : insuranceIDs) {
++            Customer cardHolder = insuranceID.getCardHolder();
++            if (cardHolder != null && cardHolder.getCustomerId().equals(customerId)) {
++                return insuranceID;
+             }
+         }
+-        return false; // No matching status found
++        return null;
+     }
++
++
++    private static Customer findCustomerByName(List<Customer> customers, String customerName) {
++        for (Customer customer : customers) {
++            if (customer.getCustomerName().equals(customerName)) {
++                return customer;
++            }
++        }
++        return null; // Return null if customer with the specified ID is not found
++    }
++
++    public static void main(String[] args) throws ParseException, IOException {
++        ClaimMenu claimMenu = new ClaimMenu();
++        claimMenu.displayMenu();
++    }
+ 
+-    private InsuranceID findInsuranceIDByCustomerName(String customerName) {
+-        // Iterate through all customers to find the one with matching name
+-        for (Customer customer : customerController.getAllCustomers()) {
+-            if (customer.getCustomerName().equalsIgnoreCase(customerName)) {
+-                return customer.getInsuranceCardID(); // Return the insurance ID associated with the customer
+-            }
+-        }
+-        return null; // Return null if no matching customer is found
+-    }
++
++/*    package code.functions;
++
++import code.claims.Claims;
++import code.customer.Customer;
++import code.manager.ClaimProcessManagerImpl;
++import code.files.LoadData;
++import code.files.SaveData;
++
++import java.io.IOException;
++import java.text.ParseException;
++import java.text.SimpleDateFormat;
++import java.util.*;
++
++    public class ClaimMenu {
++        private ClaimProcessManagerImpl claimProcessManager;
++        private Scanner scanner;
++        private LoadData loadData;
++        private SaveData saveData;
++        private final String CUSTOMER_FILE_PATH = "src/code/customerInfos.txt";
++        private final String INSURANCE_FILE_PATH = "src/code/insuranceInfos.txt";
++        private final String CLAIM_FILE_PATH = "src/code/claimsInfos.txt";
++        private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
++
++        public ClaimMenu() {
++            this.claimProcessManager = new ClaimProcessManagerImpl();
++            this.scanner = new Scanner(System.in);
++            this.loadData = new LoadData();
++            this.saveData = new SaveData();
++            loadData();
++        }
++
++        private void loadData() {
++            try {
++                List<Customer> customers = loadData.loadCustomers(CUSTOMER_FILE_PATH, INSURANCE_FILE_PATH);
++                List<Claims> claims = loadData.loadClaims(CLAIM_FILE_PATH, customers);
++                claimProcessManager.setClaims(claims);
++                claimProcessManager.setCustomers(customers);
++            } catch (IOException | ParseException e) {
++                System.out.println("Error loading data: " + e.getMessage());
++            }
++        }
+ 
+-    private void saveClaimsData(Set<Claims> claimsSet, String filePath) {
+-        List<Claims> claimsList = new ArrayList<>(claimsSet);
+-        saveData.saveClaimsData(claimsList, filePath);
+-    }
++        private void saveData() {
++            saveData.saveCustomers(claimProcessManager.getAllCustomers(), CUSTOMER_FILE_PATH);
++            saveData.saveClaims(claimProcessManager.getAllClaims(), CLAIM_FILE_PATH);
++        }
+ 
+-    private Set<Claims> loadClaimsData(String claimsFilePath, String customerFilePath, String insuranceFilePath, String bankInfoFilePath) {
+-        List<Claims> claimsList = loadData.loadClaims(claimsFilePath, customerFilePath, insuranceFilePath, bankInfoFilePath);
+-        return new HashSet<>(claimsList);
+-    }
++        public void displayMenu() {
++            boolean exit = false;
++            while (!exit) {
++                System.out.println("---- Customer Claim Management System ----");
++                System.out.println("1. Add Claim");
++                System.out.println("2. Update Claim");
++                System.out.println("3. Delete Claim");
++                System.out.println("4. View Claim");
++                System.out.println("5. View All Claims");
++                System.out.println("6. Exit");
++                System.out.print("Enter your choice: ");
++                int choice = scanner.nextInt();
++                scanner.nextLine(); // Consume newline character
++
++                switch (choice) {
++                    case 1:
++                        addClaim();
++                        break;
++                    case 2:
++                        updateClaim();
++                        break;
++                    case 3:
++                        deleteClaim();
++                        break;
++                    case 4:
++                        viewClaim();
++                        break;
++                    case 5:
++                        viewAllClaims();
++                        break;
++                    case 6:
++                        saveData();
++                        exit = true;
++                        break;
++                    default:
++                        System.out.println("Invalid choice! Please enter a number between 1 and 6.");
++                }
++            }
++            scanner.close();
++        }
++
++        private void addClaim() {
++            // Implementation for adding a claim
++        }
++
++        private void updateClaim() {
++            // Implementation for updating a claim
++        }
++
++        private void deleteClaim() {
++            // Implementation for deleting a claim
++        }
++
++        private void viewClaim() {
++            // Implementation for viewing a single claim
++        }
++
++        private void viewAllClaims() {
++            // Implementation for viewing all claims
++        }
+ 
+-    public static void main(String[] args) {
+-        ClaimMenu claimMenu = new ClaimMenu();
+-        claimMenu.displayMenu();
+-    }
++        public static void main(String[] args) {
++            ClaimMenu claimMenu = new ClaimMenu();
++            claimMenu.displayMenu();
++        }
++    }*/
+ }
+\ No newline at end of file
+Index: src/Code/Functions/CustomerController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Functions;\r\n\r\nimport Code.Customer.*;\r\nimport java.util.HashSet;\r\nimport java.util.Set;\r\n\r\npublic class CustomerController {\r\n    private Set<Customer> customers;\r\n\r\n    public CustomerController() {\r\n        this.customers = new HashSet<>();\r\n        // Initialize customers from data source if needed\r\n    }\r\n\r\n    public Customer getCustomerById(String customerName) {\r\n        for (Customer customer : customers) {\r\n            if (customer.getCustomerName().equals(customerName)) {\r\n                return customer;\r\n            }\r\n        }\r\n        return null; // Customer not found\r\n    }\r\n\r\n    public Set<Customer> getAllCustomers() {\r\n        return customers;\r\n    }\r\n}
+===================================================================
+diff --git a/src/Code/Functions/CustomerController.java b/src/Code/Functions/CustomerController.java
+--- a/src/Code/Functions/CustomerController.java	
++++ b/src/Code/Functions/CustomerController.java	
+@@ -1,27 +1,26 @@
+ package Code.Functions;
+ 
+-import Code.Customer.*;
+-import java.util.HashSet;
+-import java.util.Set;
++import Code.Customer.Customer;
++import java.util.*;
+ 
+ public class CustomerController {
+     private Set<Customer> customers;
+ 
+     public CustomerController() {
+         this.customers = new HashSet<>();
+-        // Initialize customers from data source if needed
+-    }
+-
+-    public Customer getCustomerById(String customerName) {
+-        for (Customer customer : customers) {
+-            if (customer.getCustomerName().equals(customerName)) {
+-                return customer;
+-            }
+-        }
+-        return null; // Customer not found
+     }
+ 
+-    public Set<Customer> getAllCustomers() {
++    public Set<Customer> getCustomers() {
+         return customers;
+     }
++
++    public void setCustomers(Set<Customer> customers) {
++        this.customers = customers;
++    }
++
++    public void addCustomer(Customer customer) {
++        customers.add(customer);
++    }
++
++    // Other methods to manipulate customers
+ }
+\ No newline at end of file
+Index: src/Code/Storage/Claims
+===================================================================
+diff --git a/src/Code/Storage/Claims b/src/Code/Storage/Claims
+--- a/src/Code/Storage/Claims	
++++ b/src/Code/Storage/Claims	
+@@ -1,0 +1,3 @@
++f-1234567891,11/2/2023,c-7483888,2223122222,22/4/2024,100.123,New,12345,f-1234567891_2223122222_Car Insurance.pdf;
++f-1234567890,12/12/2023,c-9384712,8372819372,22/10/2024,32.123,Done,32345,f-1234567890_8372819372_Contract.pdf;f-1234567890_8372819372_Regulation.pdf;
++f-1234567892,22/4/2022,c-9384712,8372819372,22/3/2023,45.323,New,34233,
+Index: src/Code/Storage/BankInfo
+===================================================================
+diff --git a/src/Code/Storage/BankInfo b/src/Code/Storage/BankInfo
+--- a/src/Code/Storage/BankInfo	
++++ b/src/Code/Storage/BankInfo	
+@@ -1,0 +1,3 @@
++MB,John Stalk,12345
++Techcombank,Alex Smith,32345
++MB,Alex Smith,34233
+Index: src/Code/Storage/Insurance
+===================================================================
+diff --git a/src/Code/Storage/Insurance b/src/Code/Storage/Insurance
+--- a/src/Code/Storage/Insurance	
++++ b/src/Code/Storage/Insurance	
+@@ -1,0 +1,15 @@
++9283717389,Nivia George,Ford,6/3/2024
++2341234321,Junkynet Kangtark,RMIT,17/12/2024
++9382919393,Alhaitham Wilson,RMIT,12/7/2024
++1293874832,Jun Wilson,Ford,12/4/2024
++2223122222,John Stalk,RMIT,15/3/2025
++9382218382,Jin Doe,BKG,7/5/2024
++5698532589,John Doe,RMIT,31/12/2024
++8291839281,Omen Black,RMIT,15/3/2025
++8372819372,Alex Smith,UPS,25/10/2024
++9832123483,Albert Smith,UPS,12/5/2024
++0002932134,Louis Green,Ford,17/5/2023
++2568945874,Jane Doe,BKG,31/12/2024
++0392819382,Mia Hill,UPS,12/4/2024
++3928473672,Max Harrington,RMIT,15/3/2025
++1293847382,Louis Wilson,BKG,3/9/2024
+Index: src/Code/Storage/Customers
+===================================================================
+diff --git a/src/Code/Storage/Customers b/src/Code/Storage/Customers
+--- a/src/Code/Storage/Customers	
++++ b/src/Code/Storage/Customers	
+@@ -1,0 +1,15 @@
++c-1234567,Nivia George,PolicyHolder,9283717389,c-1234564;,
++c-1232123,Junkynet Kangtark,PolicyHolder,2341234321,c-1234321;c-1234564;c-9483234;,
++c-2222222,Alhaitham Wilson,Dependent,9382919393,,
++c-1234321,Jun Wilson,Dependent,1293874832,,
++c-7483888,John Stalk,PolicyHolder,2223122222,c-2222222;c-8568742;,f-1234567891;
++c-9999999,Jin Doe,PolicyHolder,9382218382,c-2222222;c-4830938;c-8568742;,
++c-1233567,John Doe,PolicyHolder,5698532589,c-8568742;,
++c-9382743,Omen Black,PolicyHolder,8291839281,c-8568742;c-9483234;,
++c-9384712,Alex Smith,Dependent,8372819372,,f-1234567890;f-1234567892;
++c-3849392,Albert Smith,PolicyHolder,9832123483,c-8568742;,
++c-4830938,Louis Green,Dependent,0002932134,,
++c-8568742,Jane Doe,Dependent,2568945874,,
++c-8930284,Mia Hill,PolicyHolder,0392819382,c-8568742;,
++c-1234564,Max Harrington,Dependent,3928473672,,
++c-9483234,Louis Wilson,Dependent,1293847382,,
+Index: src/Code/Customer/InsuranceID.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Code.Customer;\r\n\r\nimport java.util.Date;\r\n\r\npublic class InsuranceID {\r\n    private String cardNumber;\r\n    private Customer cardHolder;\r\n    private String policyOwner;\r\n    private Date expDate;\r\n\r\n    public InsuranceID(String cardNumber, Customer cardHolder, String policyOwner, Date expDate) {\r\n        this.cardNumber = cardNumber;\r\n        this.cardHolder = cardHolder;\r\n        this.policyOwner = policyOwner;\r\n        this.expDate = expDate;\r\n    }\r\n\r\n\r\n    public String getCardNumber() {\r\n        return cardNumber;\r\n    }\r\n\r\n    public void setCardNumber(String cardNumber) {\r\n        this.cardNumber = cardNumber;\r\n    }\r\n\r\n    public Customer getCardHolder() {\r\n        return cardHolder;\r\n    }\r\n\r\n    public void setCardHolder(Customer cardHolder) {\r\n        this.cardHolder = cardHolder;\r\n    }\r\n\r\n    public String getPolicyOwner() {\r\n        return policyOwner;\r\n    }\r\n\r\n    public void setPolicyOwner(String policyOwner) {\r\n        this.policyOwner = policyOwner;\r\n    }\r\n\r\n    public Date getExpDate() {\r\n        return expDate;\r\n    }\r\n\r\n    public void setExpDate(Date expDate) {\r\n        this.expDate = expDate;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Card Number: \" + cardNumber + \", Card Holder: \" + cardHolder.getCustomerName() +\r\n                \", Policy Owner: \" + policyOwner + \", Expiration Date: \" + expDate;\r\n    }\r\n\r\n    public void display() {\r\n        System.out.println(\"Card Number: \" + cardNumber);\r\n        System.out.println(\"Card Holder: \" + cardHolder);\r\n        System.out.println(\"Policy Owner: \" + policyOwner);\r\n        System.out.println(\"Expiration Date: \" + expDate);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/Code/Customer/InsuranceID.java b/src/Code/Customer/InsuranceID.java
+--- a/src/Code/Customer/InsuranceID.java	
++++ b/src/Code/Customer/InsuranceID.java	
+@@ -48,16 +48,25 @@
+         this.expDate = expDate;
+     }
+ 
+-    @Override
++    /*@Override
+     public String toString() {
+-        return "Card Number: " + cardNumber + ", Card Holder: " + cardHolder.getCustomerName() +
+-                ", Policy Owner: " + policyOwner + ", Expiration Date: " + expDate;
++        return "InsuranceID{" +
++                "cardNumber='" + cardNumber + '\'' +
++                ", cardHolder='" + (cardHolder != null ? cardHolder.getCustomerId() : "null") + '\'' +
++                ", policyOwner='" + policyOwner + '\'' +
++                ", expDate=" + expDate +
++                '}';
++    }*/
++
++    public String toStringID() {
++        return cardNumber;
+     }
+ 
+-    public void display() {
++
++    /*public void display() {
+         System.out.println("Card Number: " + cardNumber);
+         System.out.println("Card Holder: " + cardHolder);
+         System.out.println("Policy Owner: " + policyOwner);
+         System.out.println("Expiration Date: " + expDate);
+-    }
++    }*/
+ }
